@@ -10,7 +10,7 @@
 
 namespace tp_carrito_compras_equipo_20
 {
-    public partial class Carrito
+    public partial class Perfil
     {
     }
 }

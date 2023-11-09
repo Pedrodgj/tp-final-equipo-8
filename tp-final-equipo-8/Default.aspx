@@ -3,16 +3,6 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 
-    <script>
-
-        function MyJueryFunction() {
-            $('#comments').append('<div>asd</div>');
-            var check = $('.chkboxCat:checkbox:checked').length;
-            $('#numCat').text(check);
-
-        }
-    </script>
-
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
 
@@ -111,7 +101,7 @@
       </span>
     </summary>
 
-    <div class="border-t border-gray-200 bg-white">
+    <div class="border-t border-slate-800 bg-slate-900">
       <header class="flex items-center justify-between p-4">
         <span class="text-sm text-gray-700"> <span id="numMar">0</span> Seleccionados </span>
 
