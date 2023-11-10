@@ -70,6 +70,18 @@ namespace Negocio
             return lector.Read();
         }
 
+        public static int Login(string mail, string password)
+        {
+            AccesoDatos acceso = new AccesoDatos();
+            var lector = acceso.Leer("SELECT Id FROM Usuario WHERE Email = '" + mail + "' and Password = '" + password + "'");
+
+            if (lector.Read()) {
+                return (int)lector["Id"];
+            }
+
+            return -1;
+        }
+
         public static bool Grabar(Usuario usr)
         {
             AccesoDatos acceso = new AccesoDatos();
