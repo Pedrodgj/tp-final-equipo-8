@@ -33,8 +33,8 @@ CREATE TABLE Usuario (
   IdTipoUsuario INT NOT NULL,
   IdDomicilio INT NOT NULL,
   CONSTRAINT PK_Usuario PRIMARY KEY (Id),
-  CONSTRAINT FK_TipoUsuario FOREIGN KEY (Id) REFERENCES TipoUsuario(Id),
-  CONSTRAINT FK_Domicilio FOREIGN KEY (Id) REFERENCES Domicilio(Id)
+  CONSTRAINT FK_TipoUsuario FOREIGN KEY (IdTipoUsuario) REFERENCES TipoUsuario(Id),
+  CONSTRAINT FK_Domicilio FOREIGN KEY (IdDomicilio) REFERENCES Domicilio(Id)
 );
 
 go
