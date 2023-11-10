@@ -11,7 +11,7 @@
 -->
 
 <section
-  class="relative bg-[linear-gradient(to_right_bottom,rgba(49,100,118,0.5),rgba(24,49,61,0.8)),url(https://images.unsplash.com/photo-1518770660439-4636190af475?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D)] bg-cover bg-center bg-no-repeat bg-opacity-30"
+  class="relative bg-[linear-gradient(to_right_bottom,rgba(51,65,85,0.5),rgba(2,6,23,0.8)),url(https://images.unsplash.com/photo-1518770660439-4636190af475?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D)] bg-cover bg-center bg-no-repeat bg-opacity-30"
 >
     <% if (Session["Msg_error"] != null)
               { %>
@@ -51,14 +51,14 @@
       <div class="mt-8 flex flex-wrap gap-4 text-center">
         <a
           href="#"
-          class="block w-full rounded bg-cyan-950 px-12 py-3 text-sm font-medium text-white shadow hover:bg-cyan-900 focus:outline-none focus:ring active:bg-rose-500 sm:w-auto"
+          class="block w-full rounded bg-slate-950 px-12 py-3 text-sm font-medium text-white shadow hover:bg-slate-900 focus:outline-none focus:ring active:bg-slate-500 sm:w-auto"
         >
           Ver catalogo
         </a>
 
         <a
           href="#"
-          class="block w-full rounded bg-white px-12 py-3 text-sm font-medium text-cyan-950 shadow hover:text-cyan-950 focus:outline-none focus:ring active:text-cyan-800 sm:w-auto"
+          class="block w-full rounded bg-slate-50 px-12 py-3 text-sm font-medium text-slate-950 shadow hover:text-slate-950 focus:outline-none focus:ring active:text-slate-800 sm:w-auto"
         >
           Acerca de nosotros
         </a>
@@ -68,7 +68,7 @@
 </section>
 
 
-<section class="bg-cyan-950 text-white">
+<section class="bg-slate-950 text-white">
   <div class="max-w-screen-xl px-4 py-8 sm:py-12 sm:px-6 lg:py-16 lg:px-8">
     <div class="max-w-xl">
       <h2 class="text-3xl font-bold sm:text-4xl">Que nos hace especiales</h2>
@@ -287,12 +287,12 @@
     <section>
   <div class="max-w-screen-xl px-4 py-8 mx-auto sm:py-12 sm:px-6 lg:px-8">
     <div class="grid grid-cols-1 gap-4 lg:grid-cols-3 lg:items-stretch">
-      <div class="grid p-6 bg-gray-100 rounded place-content-center sm:p-8">
+      <div class="grid p-6 bg-slate-800 rounded place-content-center sm:p-8">
         <div class="max-w-md mx-auto text-center lg:text-left">
           <header>
-            <h2 class="text-xl font-bold text-gray-900 sm:text-3xl">Procesadores</h2>
+            <h2 class="text-xl font-bold text-slate-300 sm:text-3xl">Procesadores</h2>
 
-            <p class="mt-4 text-gray-500">
+            <p class="mt-4 text-slate-400">
               Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quas
               rerum quam amet provident nulla error!
             </p>
@@ -319,7 +319,7 @@
 
               <div class="mt-3">
                 <h3
-                  class="font-medium text-gray-900 group-hover:underline group-hover:underline-offset-4"
+                  class="font-medium text-slate-500 group-hover:underline group-hover:underline-offset-4"
                 >
                   Ryzens
                 </h3>
@@ -338,7 +338,7 @@
 
               <div class="mt-3">
                 <h3
-                  class="font-medium text-gray-900 group-hover:underline group-hover:underline-offset-4"
+                  class="font-medium text-slate-500 group-hover:underline group-hover:underline-offset-4"
                 >
                   Intel
                 </h3>

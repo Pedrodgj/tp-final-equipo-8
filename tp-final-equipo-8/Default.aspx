@@ -6,20 +6,20 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
 
-    <div id="comments">comments</div>
+    
 
 <div class="grid grid-cols-5 gap-3">
   <div>
 
 <div class="space-y-2 mt-6 ml-2">
 
-    Filtrar
+    <span class="text-slate-300 font-bold">Filtrar</span>
     <form method="post" id="formCategorias" accept-charset="UTF-8">
   <details
-    class="overflow-hidden rounded border border-gray-300 [&_summary::-webkit-details-marker]:hidden"
+    class="overflow-hidden rounded border border-slate-800 [&_summary::-webkit-details-marker]:hidden"
   >
     <summary
-      class="flex cursor-pointer items-center justify-between gap-2 bg-white p-4 text-gray-900 transition"
+      class="flex cursor-pointer items-center justify-between gap-2 bg-slate-950 p-4 text-slate-400 transition"
     >
       <span class="text-sm font-medium"> Categoria </span>
 
@@ -41,16 +41,16 @@
       </span>
     </summary>
 
-    <div class="border-t border-gray-200 bg-white">
+    <div class="border-t border-slate-800 bg-slate-950">
       <header class="flex items-center justify-between p-4">
-        <span class="text-sm text-gray-700"> <span id="numCat">0</span> Seleccionados </span>
+        <span class="text-sm text-slate-500"> <span id="numCat">0</span> Seleccionados </span>
 
         
-          <asp:button id="button1" runat="server" text="Reset" onclientclick="return limpiarCats()" UseSubmitBehavior="False" CssClass="text-sm text-gray-900 underline underline-offset-4"/>
+          <asp:button id="button1" runat="server" text="Reset" onclientclick="return limpiarCats()" UseSubmitBehavior="False" CssClass="text-sm text-slate-400 underline underline-offset-4"/>
       </header>
 
 
-      <ul class="space-y-1 border-t border-gray-200 p-4">
+      <ul class="space-y-1 border-t border-slate-800 p-4">
           <% foreach (var categoria in cats)
               {
                   
@@ -60,10 +60,10 @@
             <input
               type="checkbox"
               id="<%: categoria.Descripcion %>" value="<%: categoria.Descripcion %>"
-              class="h-5 w-5 rounded border-gray-300 chkboxCat"
+              class="h-5 w-5 rounded border-slate-300 chkboxCat"
             />
 
-            <span class="text-sm font-medium text-gray-700">
+            <span class="text-sm font-medium text-slate-400">
               <%: categoria.Descripcion %>
             </span>
           </label>
@@ -76,10 +76,10 @@
 
     <form method="post" id="formMarcas" accept-charset="UTF-8">
   <details
-    class="overflow-hidden rounded border border-gray-300 [&_summary::-webkit-details-marker]:hidden"
+    class="overflow-hidden rounded border border-slate-800 [&_summary::-webkit-details-marker]:hidden"
   >
     <summary
-      class="flex cursor-pointer items-center justify-between gap-2 bg-white p-4 text-gray-900 transition"
+      class="flex cursor-pointer items-center justify-between gap-2 bg-slate-950 p-4 text-slate-400 transition"
     >
       <span class="text-sm font-medium"> Marca </span>
 
@@ -101,15 +101,15 @@
       </span>
     </summary>
 
-    <div class="border-t border-slate-800 bg-slate-900">
+    <div class="border-t border-slate-800 bg-slate-950">
       <header class="flex items-center justify-between p-4">
-        <span class="text-sm text-gray-700"> <span id="numMar">0</span> Seleccionados </span>
+        <span class="text-sm text-slate-500"> <span id="numMar">0</span> Seleccionados </span>
 
-        <asp:button id="button2" runat="server" text="Reset" onclientclick="return limpiarMars()" UseSubmitBehavior="False" CssClass="text-sm text-gray-900 underline underline-offset-4"/>
+        <asp:button id="button2" runat="server" text="Reset" onclientclick="return limpiarMars()" UseSubmitBehavior="False" CssClass="text-sm text-slate-400 underline underline-offset-4"/>
       </header>
 
 
-      <ul class="space-y-1 border-t border-gray-200 p-4">
+      <ul class="space-y-1 border-t border-slate-800 p-4">
           <% foreach (var marca in marcas)
               {
                   %>
@@ -118,10 +118,10 @@
             <input
               type="checkbox"
               id="<%: marca.Descripcion %>" value="<%: marca.Descripcion %>"
-              class="h-5 w-5 rounded border-gray-300 chkboxMar"
+              class="h-5 w-5 rounded border-slate-300 chkboxMar"
             />
 
-            <span class="text-sm font-medium text-gray-700">
+            <span class="text-sm font-medium text-slate-400">
               <%: marca.Descripcion %>
             </span>
           </label>
