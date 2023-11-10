@@ -13,6 +13,20 @@
 <section
   class="relative bg-[linear-gradient(to_right_bottom,rgba(49,100,118,0.5),rgba(24,49,61,0.8)),url(https://images.unsplash.com/photo-1518770660439-4636190af475?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D)] bg-cover bg-center bg-no-repeat bg-opacity-30"
 >
+    <% if (Session["Msg_error"] != null)
+              { %>
+              <div class="w-[50%] bg-red-200 p-10 absolute top-2 right-2">
+                  <%= Session["Msg_error"] %>
+                  <% Session["Msg_error"] = null; %>
+              </div>
+          <%} %>
+          <% if (Session["Msg_ok"] != null)
+              { %>
+              <div class="w-[50%] bg-green-200 p-10 absolute top-2 right-2">
+                  <%= Session["Msg_ok"] %>
+                  <% Session["Msg_ok"] = null; %>
+              </div>
+          <%} %>
   <div
     class="absolute inset-0 bg-white/75 sm:bg-transparent sm:from-white/95 sm:to-white/25 ltr:sm:bg-gradient-to-r rtl:sm:bg-gradient-to-l"
   ></div>

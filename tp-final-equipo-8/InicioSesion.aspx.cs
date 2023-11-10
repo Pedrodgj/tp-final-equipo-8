@@ -1,9 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.UI;
-using System.Web.UI.WebControls;
+﻿using Negocio;
+using System;
 
 namespace tp_carrito_compras_equipo_20
 {
@@ -11,6 +7,29 @@ namespace tp_carrito_compras_equipo_20
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (this.IsPostBack)
+            {
+                Session["ID_Usuario"] = null;
+                string mail = Request.Form["mail"];
+                string password = Request.Form["password"];
+
+                int id = Usuarios.Login(mail, password);
+
+                if (id > 0)
+                {
+                    Session["Msg_ok"] = "Login Correcto!";
+                    Session["ID_Usuario"] = id;
+                    Response.Redirect("/Perfil.aspx");
+                }
+                Session["Msg_error"] = "Usuario o contraseña incorrectos. Por favor, verifique y vuelva a intentar...";
+            }
+            else
+            {
+                if (Session["ID_Usuario"] != null)
+                {
+                    Response.Redirect("/Perfil.aspx");
+                }
+            }
 
         }
     }
