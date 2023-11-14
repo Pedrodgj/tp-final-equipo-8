@@ -246,13 +246,7 @@
                         </div>
 
                         <div class="flex flex-wrap items-center gap-4">
-
-                            <button
-
-                                class="w-full p-4 bg-blue-500 rounded-md lg:w-2/5 dark:text-gray-200 text-gray-50 hover:bg-blue-600 dark:bg-blue-500 dark:hover:bg-blue-700">
-
-                                Agregar al carrito</button>
-
+                                <a href="Carrito.aspx?id=<%: articulo.Id %>" class="w-full p-4 bg-blue-500 rounded-md lg:w-2/5 dark:text-gray-200 text-gray-50 hover:bg-blue-600 dark:bg-blue-500 dark:hover:bg-blue-700">Agregar al carrito</a>
                         </div>
 
                     </div>
