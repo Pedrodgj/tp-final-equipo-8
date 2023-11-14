@@ -1,18 +1,18 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Master.Master" AutoEventWireup="true" CodeBehind="Admin.aspx.cs" Inherits="tp_carrito_compras_equipo_20.Admin" %>
-<asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
-</asp:Content>
-<asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-
+﻿<%@ Master Language="C#" MasterPageFile="~/Master.Master" AutoEventWireup="true" CodeBehind="MasterAdmin.master.cs" Inherits="tp_carrito_compras_equipo_20.admin.MasterAdmin" %>
+<asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
+    <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server" />
     <div class="grid grid-cols-5 gap-3">
-  <div class="rounded-lg bg-slate-900">
+  <div class="rounded-lg bg-slate-950">
       <div class="flex h-screen flex-col justify-between bg-transparent border-r-2 border-double border-slate-800 shadow-md">
   <div class="px-4 py-6">
+
+      <span class="text-slate-200 font-bold">Administracion de pagina</span>
 
     <ul class="mt-6 space-y-1">
       <li>
         <a
           href=""
-          class="block rounded-lg bg-slate-900 px-4 py-2 text-sm font-medium text-slate-400"
+          class="block rounded-lg bg-transparent px-4 py-2 text-sm font-medium text-slate-400"
         >
           General
         </a>
@@ -20,8 +20,8 @@
 
         <li>
         <a
-          href=""
-          class="block rounded-lg bg-slate-900 px-4 py-2 text-sm font-medium text-slate-400"
+          href="Pedidos.aspx"
+          class="block rounded-lg bg-transparent px-4 py-2 text-sm font-medium text-slate-400"
         >
           Pedidos
         </a>
@@ -29,8 +29,8 @@
 
         <li>
         <a
-          href=""
-          class="block rounded-lg bg-slate-900 px-4 py-2 text-sm font-medium text-slate-400"
+          href="Clientes.aspx"
+          class="block rounded-lg bg-transparent px-4 py-2 text-sm font-medium text-slate-400"
         >
           Clientes
         </a>
@@ -39,7 +39,7 @@
       <li>
         <details class="group [&_summary::-webkit-details-marker]:hidden">
           <summary
-            class="flex cursor-pointer items-center justify-between rounded-lg px-4 py-2 text-gray-500 hover:bg-gray-100 hover:text-gray-700"
+            class="flex cursor-pointer items-center justify-between rounded-lg px-4 py-2 text-slate-500 hover:bg-slate-700 hover:text-slate-300"
           >
             <span class="text-sm font-medium"> Productos </span>
 
@@ -64,8 +64,8 @@
           <ul class="mt-2 space-y-1 px-4">
             <li>
               <a
-                href=""
-                class="block rounded-lg px-4 py-2 text-sm font-medium text-gray-500 hover:bg-gray-100 hover:text-gray-700"
+                href="AgregarProducto.aspx"
+                class="block rounded-lg bg-transparent px-4 py-2 text-sm font-medium text-slate-400"
               >
                 Agregar nuevo
               </a>
@@ -73,8 +73,8 @@
 
             <li>
               <a
-                href=""
-                class="block rounded-lg px-4 py-2 text-sm font-medium text-gray-500 hover:bg-gray-100 hover:text-gray-700"
+                href="Productos.aspx"
+                class="block rounded-lg bg-transparent px-4 py-2 text-sm font-medium text-slate-400"
               >
                 Catalogo
               </a>
@@ -86,7 +86,7 @@
         <li>
         <details class="group [&_summary::-webkit-details-marker]:hidden">
           <summary
-            class="flex cursor-pointer items-center justify-between rounded-lg px-4 py-2 text-gray-500 hover:bg-gray-100 hover:text-gray-700"
+            class="flex cursor-pointer items-center justify-between rounded-lg px-4 py-2 text-slate-500 hover:bg-slate-700 hover:text-slate-300"
           >
             <span class="text-sm font-medium"> Categorias </span>
 
@@ -111,8 +111,8 @@
           <ul class="mt-2 space-y-1 px-4">
             <li>
               <a
-                href=""
-                class="block rounded-lg px-4 py-2 text-sm font-medium text-gray-500 hover:bg-gray-100 hover:text-gray-700"
+                href="AgregarCategoria.aspx"
+                class="block rounded-lg bg-transparent px-4 py-2 text-sm font-medium text-slate-400"
               >
                 Agregar nueva
               </a>
@@ -120,8 +120,8 @@
 
             <li>
               <a
-                href=""
-                class="block rounded-lg px-4 py-2 text-sm font-medium text-gray-500 hover:bg-gray-100 hover:text-gray-700"
+                href="Categorias.aspx"
+                class="block rounded-lg bg-transparent px-4 py-2 text-sm font-medium text-slate-400"
               >
                 Lista
               </a>
@@ -133,7 +133,7 @@
         <li>
         <details class="group [&_summary::-webkit-details-marker]:hidden">
           <summary
-            class="flex cursor-pointer items-center justify-between rounded-lg px-4 py-2 text-gray-500 hover:bg-gray-100 hover:text-gray-700"
+            class="flex cursor-pointer items-center justify-between rounded-lg px-4 py-2 text-slate-500 hover:bg-slate-700 hover:text-slate-300"
           >
             <span class="text-sm font-medium"> Marcas </span>
 
@@ -158,8 +158,8 @@
           <ul class="mt-2 space-y-1 px-4">
             <li>
               <a
-                href=""
-                class="block rounded-lg px-4 py-2 text-sm font-medium text-gray-500 hover:bg-gray-100 hover:text-gray-700"
+                href="AgregarMarca.aspx"
+                class="block rounded-lg bg-transparent px-4 py-2 text-sm font-medium text-slate-400"
               >
                 Agregar nueva
               </a>
@@ -167,8 +167,8 @@
 
             <li>
               <a
-                href=""
-                class="block rounded-lg px-4 py-2 text-sm font-medium text-gray-500 hover:bg-gray-100 hover:text-gray-700"
+                href="Marcas.aspx"
+                class="block rounded-lg bg-transparent px-4 py-2 text-sm font-medium text-slate-400"
               >
                 Lista
               </a>
@@ -186,16 +186,9 @@
 </div>
 
   </div>
-    <div class="rounded-lg col-span-4 text-slate-300">
-
-        texto
-  
-</div>
-    
-
-  </div>
-
-
+        <div class="rounded-lg col-span-4 text-slate-300">
+            <asp:ContentPlaceHolder ID="nestedContent" runat="server">
+            </asp:ContentPlaceHolder>
+            </div>
+        </div>
 </asp:Content>
-
-  
