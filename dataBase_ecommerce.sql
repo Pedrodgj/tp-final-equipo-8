@@ -16,6 +16,7 @@ CREATE TABLE Domicilio (
   Numero INT NOT NULL,
   Piso INT NULL,
   Provincia VARCHAR(50) NOT NULL,
+  CodigoPostal INT NOT NULL,
   Referencia TEXT NULL,
   CONSTRAINT PK_Domicilio PRIMARY KEY (Id)
 );

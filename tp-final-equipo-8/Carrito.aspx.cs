@@ -23,6 +23,7 @@ namespace tp_carrito_compras_equipo_20
             var id = Request.QueryString["id"];
             var delete = Request.QueryString["delete"];
             var deleteAll = Request.QueryString["deleteAll"];
+            bool primerArticulo;
 
             if (delete == "true")
             {
@@ -39,7 +40,14 @@ namespace tp_carrito_compras_equipo_20
             }
 
             articulos = (List<Articulo>)Session["articulos"];
-            if (articulos == null)
+            if(articulos == null)
+            {
+                primerArticulo = true;
+            } else
+            {
+                primerArticulo = false;
+            }
+            if (primerArticulo == true)
             {
                 articulos = new List<Articulo>();
                 if (id != null)
@@ -48,38 +56,40 @@ namespace tp_carrito_compras_equipo_20
                     art.Cantidad = art.Cantidad + 1;
                     articulos.Add(art);
                     Session["articulos"] = articulos;
-                    return;
+                    //return;
                 }
-            }
-
-            List<Articulo> articulosTotal = Articulos.Listar();
-
-            if (id != null)
+            } else
             {
-                bool exist = false;
-                foreach (var art in articulosTotal)
-                {
-                    if (id == art.Id.ToString())
-                    {
-                        foreach (var articu in articulos)
-                        {
-                            if (art.Id == articu.Id)
-                            {
-                                articu.Cantidad = articu.Cantidad + 1;
-                                exist = true;
-                            }
-                        }
+                List<Articulo> articulosTotal = Articulos.Listar();
 
-                        if (exist != true)
+                if (id != null)
+                {
+                    bool exist = false;
+                    foreach (var art in articulosTotal)
+                    {
+                        if (id == art.Id.ToString())
                         {
-                            art.Cantidad = art.Cantidad + 1;
-                            articulos.Add(art);
+                            foreach (var articu in articulos)
+                            {
+                                if (art.Id == articu.Id)
+                                {
+                                    articu.Cantidad = articu.Cantidad + 1;
+                                    exist = true;
+                                }
+                            }
+
+                            if (exist != true)
+                            {
+                                art.Cantidad = art.Cantidad + 1;
+                                articulos.Add(art);
+                            }
                         }
                     }
                 }
+
+                Session["articulos"] = articulos;
             }
 
-            Session["articulos"] = articulos;
 
             decimal total = 0;
             foreach (var arti in articulos)

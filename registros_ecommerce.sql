@@ -5,11 +5,11 @@ INSERT INTO TipoUsuario (Nombre) VALUES ('Administrador');
 INSERT INTO TipoUsuario (Nombre) VALUES ('Cliente');
 go
 -- Insertar Domicilios
-INSERT INTO Domicilio (Calle, Ciudad, Departamento, Numero, Piso, Provincia, Referencia)
-VALUES ('Calle 1', 'Ciudad 1', 'Dep 1', 123, 2, 'Provincia 1', 'Referencia 1');
+INSERT INTO Domicilio (Calle, Ciudad, Departamento, Numero, Piso, Provincia, Referencia, CodigoPostal)
+VALUES ('Calle 1', 'Ciudad 1', 'Dep 1', 123, 2, 'Provincia 1', 'Referencia 1', 1718);
 
-INSERT INTO Domicilio (Calle, Ciudad, Departamento, Numero, Piso, Provincia, Referencia)
-VALUES ('Calle 2', 'Ciudad 2', 'Dep 2', 456, 3, 'Provincia 2', 'Referencia 2');
+INSERT INTO Domicilio (Calle, Ciudad, Departamento, Numero, Piso, Provincia, Referencia, CodigoPostal)
+VALUES ('Calle 2', 'Ciudad 2', 'Dep 2', 456, 3, 'Provincia 2', 'Referencia 2', 1718);
 go
 -- Insertar Usuarios
 INSERT INTO Usuario (Activo, Apellidos, DNI, Email, FechaNacimiento, Nombres, Password, Telefono, IdTipoUsuario, IdDomicilio)

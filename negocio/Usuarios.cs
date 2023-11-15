@@ -62,6 +62,31 @@ namespace Negocio
             return usr;
         }
 
+        public static Usuario LeerPorId(int Id)
+        {
+            AccesoDatos acceso = new AccesoDatos();
+
+            var lector = acceso.Leer("SELECT * FROM Usuario WHERE Id = " + Id + "");
+
+            if (!lector.Read()) return null;
+
+            Usuario usr = new Usuario
+            {
+                Id = (int)lector["Id"],
+                Apellidos = (string)lector["Apellidos"],
+                Nombres = (string)lector["Nombres"],
+                DNI = (string)lector["DNI"],
+                Email = (string)lector["Email"],
+                FechaNacimiento = (DateTime)lector["FechaNacimiento"],
+                Password = (string)lector["Password"],
+                Telefono = (string)lector["Telefono"],
+                IdTipoUsuario = (int)lector["IdTipoUsuario"],
+                IdDomicilio = (int)lector["IdDomicilio"],
+            };
+
+            return usr;
+        }
+
         public static bool Existe(string mail)
         {
             AccesoDatos acceso = new AccesoDatos();
