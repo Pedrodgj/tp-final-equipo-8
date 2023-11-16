@@ -57,5 +57,22 @@ namespace Negocio
                 throw ex;
             }
         }
+
+        public static Categoria Leer(int Id)
+        {
+            AccesoDatos acceso = new AccesoDatos();
+
+            var lector = acceso.Leer("SELECT Id, Descripcion FROM Categorias WHERE Id = " + Id + "");
+
+            if (!lector.Read()) return null;
+
+            Categoria marca = new Categoria
+            {
+                Id = (int)lector["Id"],
+                Descripcion = (string)lector["Descripcion"]
+            };
+
+            return marca;
+        }
     }
 }
