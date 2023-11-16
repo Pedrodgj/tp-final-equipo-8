@@ -13,13 +13,21 @@ namespace tp_carrito_compras_equipo_20
                 string mail = Request.Form["mail"];
                 string password = Request.Form["password"];
 
-                int id = Usuarios.Login(mail, password);
+                var usr = Usuarios.Login(mail, password);
 
-                if (id > 0)
+                if (usr != null)
                 {
                     Session["Msg_ok"] = "Login Correcto!";
-                    Session["ID_Usuario"] = id;
-                    Response.Redirect("/Perfil.aspx");
+                    Session["Usuario"] = usr;
+
+                    if (usr.IdTipoUsuario == 1) // usuario admin
+                    {
+                        Response.Redirect("/Admin/Panel.aspx");
+                    }
+                    else
+                    {
+                        Response.Redirect("/Perfil.aspx");
+                    }
                 }
                 Session["Msg_error"] = "Usuario o contraseña incorrectos. Por favor, verifique y vuelva a intentar...";
             }

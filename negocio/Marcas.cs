@@ -57,5 +57,22 @@ namespace Negocio
                 throw ex;
             }
         }
+
+        public static Marca Leer(int Id)
+        {
+            AccesoDatos acceso = new AccesoDatos();
+
+            var lector = acceso.Leer("SELECT Id, Descripcion FROM Marcas WHERE Id = " + Id + "");
+
+            if (!lector.Read()) return null;
+
+            Marca marca = new Marca
+            {
+                Id = (int)lector["Id"],
+                Descripcion = (string)lector["Descripcion"]
+            };
+
+            return marca;
+        }
     }
 }

@@ -41,7 +41,7 @@ namespace Negocio
         {
             AccesoDatos acceso = new AccesoDatos();
 
-            var lector = acceso.Leer("SELECT * FROM Usuario WHERE Email = '" + mail + "' AND Password = '" + password + "'");
+            var lector = acceso.Leer("SELECT Id, Apellidos, Nombres, DNI, Email, FechaNacimiento, Password, Telefono, IdTipoUsuario, IdDomicilio FROM Usuario WHERE Email = '" + mail + "' AND Password = '" + password + "'");
 
             if (!lector.Read()) return null;
 
@@ -49,7 +49,7 @@ namespace Negocio
             {
                 Id = (int)lector["Id"],
                 Apellidos = (string)lector["Apellidos"],
-                Nombres = (string)lector["Nombre"],
+                Nombres = (string)lector["Nombres"],
                 DNI = (string)lector["DNI"],
                 Email = (string)lector["Email"],
                 FechaNacimiento = (DateTime)lector["FechaNacimiento"],
@@ -95,16 +95,10 @@ namespace Negocio
             return lector.Read();
         }
 
-        public static int Login(string mail, string password)
+        public static Usuario Login(string mail, string password)
         {
-            AccesoDatos acceso = new AccesoDatos();
-            var lector = acceso.Leer("SELECT Id FROM Usuario WHERE Email = '" + mail + "' and Password = '" + password + "'");
-
-            if (lector.Read()) {
-                return (int)lector["Id"];
-            }
-
-            return -1;
+            var usr = Usuarios.Leer(mail,password);
+            return usr;
         }
 
         public static bool Grabar(Usuario usr)
