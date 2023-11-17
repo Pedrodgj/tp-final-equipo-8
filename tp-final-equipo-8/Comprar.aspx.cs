@@ -36,14 +36,21 @@ namespace tp_carrito_compras_equipo_20
             decimal totalAPagar = total + totalConIva;
             lblTotalPagar.Text = string.Format(pesos, "{0:C}", totalAPagar);
 
-            if (Session["ID_Usuario"] == null)
+            if (Session["Usuario"] == null)
             {
                 return;
             }
-            int idUsuario = (int)Session["ID_Usuario"];
-            usuario = Negocio.Usuarios.LeerPorId(idUsuario);
-            txtNombre.Text = usuario.Nombres;
-
+            
+            Domicilio domicilio;
+            usuario = (Usuario)Session["Usuario"];
+            domicilio = Negocio.Domicilios.ListarPorId(usuario.IdDomicilio);
+            txtProvincia.Text = domicilio.Provincia.ToString();
+            txtCiudad.Text = domicilio.Ciudad.ToString();
+            txtCalle.Text = domicilio.Calle.ToString();
+            txtNumero.Text = domicilio.Numero.ToString();
+            txtDepartamento.Text = domicilio.Departamento.ToString();
+            txtPiso.Text = domicilio.Piso.ToString();
+            txtCodigoPostal.Text = domicilio.CodigoPostal.ToString();
         }
     }
 }

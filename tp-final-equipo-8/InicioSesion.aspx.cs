@@ -19,7 +19,7 @@ namespace tp_carrito_compras_equipo_20
                 {
                     Session["Msg_ok"] = "Login Correcto!";
                     Session["Usuario"] = usr;
-
+                    Session["ID_Usuario"] = usr.Id;
                     if (usr.IdTipoUsuario == 1) // usuario admin
                     {
                         Response.Redirect("/Admin/Panel.aspx");

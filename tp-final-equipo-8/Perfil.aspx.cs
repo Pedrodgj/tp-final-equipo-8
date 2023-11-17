@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Security.Cryptography;
 
 namespace tp_carrito_compras_equipo_20
 {
@@ -14,6 +15,7 @@ namespace tp_carrito_compras_equipo_20
             if (this.IsPostBack)
             {
                 Session["ID_Usuario"] = null;
+                Session["Usuario"] = null;
                 Response.Redirect("/InicioSesion.aspx");
             }
         }

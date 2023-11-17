@@ -53,16 +53,22 @@
           </div>--%>
 
 
-          <div class="col-span-6 sm:flex sm:items-center sm:gap-4 pt-10">
+          <%--<div class="col-span-6 sm:flex sm:items-center sm:gap-4 pt-10">
             <button class="inline-block shrink-0 rounded-md border border-slate-700 bg-slate-800 px-12 py-3 text-sm font-medium text-white transition hover:bg-slate-800 hover:text-slate-400 focus:outline-none focus:ring active:text-slate-500">
                 Cerrar Sesión
             </button>
+          </div>--%>
+
+            <div class="col-span-6 sm:flex sm:items-center sm:gap-4 pt-10">
+                <asp:Button ID="btnCerrarSesion" runat="server" CssClass="inline-block shrink-0 rounded-md border border-slate-700 bg-slate-800 px-12 py-3 text-sm font-medium text-white transition hover:bg-slate-800 hover:text-slate-400 focus:outline-none focus:ring active:text-slate-500"
+                    Text="Cerrar Sesión" />
+            </div>
+
 
              <%--<p class="mt-4 text-sm text-slate-300 sm:mt-0">
               No tenes una cuenta? 
               <a href="/Registro.aspx" class="text-slate-400 underline">Registrate</a>.
             </p>--%>
-          </div>
         </form>
       </div>
     </main>

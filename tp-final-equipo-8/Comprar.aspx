@@ -15,7 +15,7 @@
             <% if(usuario == null)
             {%>
                   <button type="button" class="accordion flex items-center justify-between w-full p-5 font-medium text-left text-slate-300 bg-slate-900" data-accordion-target="#accordion-collapse-body-1" aria-expanded="true" aria-controls="accordion-collapse-body-1">
-                    <span>Informacion de contacto</span>
+                    <span>Registrar Usuario</span>
                     <svg data-accordion-icon class="w-3 h-3 rotate-180 shrink-0" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
                       <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5 5 1 1 5"/>
                     </svg>
@@ -71,6 +71,11 @@
                       </span>
                   </label>
                 </div>
+                <div class="col-span-6 sm:flex sm:items-end sm:gap-4 space-y-2 pt-2 float-right">
+                    <button class="inline-block shrink-0 rounded-md border border-slate-700 bg-slate-800 px-12 py-3 text-sm font-medium text-white transition hover:bg-slate-800 hover:text-slate-400 focus:outline-none focus:ring active:text-slate-500">
+                        Crear Usuario
+                    </button>
+                </div>
                 <div class="col-span-6 pt-3 pb-3">
                       <p class="text-sm text-slate-200">
                         Se creara una cuenta automaticamente al realizar este pedido. Al crear una cuenta, aceptas nuestros
@@ -91,7 +96,7 @@
               <% } else
                 { %>
                 <button type="button" class="accordion flex items-center justify-between w-full p-5 font-medium text-left text-slate-300 bg-slate-900" data-accordion-target="#accordion-collapse-body-1" aria-expanded="true" aria-controls="accordion-collapse-body-1">
-                    <span>Informacion de contacto</span>
+                    <span>Informacion de Domicilio</span>
                     <svg data-accordion-icon class="w-3 h-3 rotate-180 shrink-0" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
                       <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5 5 1 1 5"/>
                     </svg>
@@ -101,25 +106,76 @@
                         <form action="#" class="mt-8 grid grid-cols-6 gap-6">
                 <div class="col-span-6 space-y-2">
                     <div class="bg-slate-800 relative block overflow-hidden rounded-md border border-slate-900 px-3 pt-3 shadow-sm focus-within:border-slate-600 focus-within:ring-1 focus-within:ring-slate-600">
-                    <asp:TextBox runat="server" ID="txtDireccion" CssClass="peer h-8 w-full border-none bg-transparent p-0 placeholder-transparent focus:border-transparent focus:outline-none focus:ring-0 sm:text-sm" placeholder="Nombre"></asp:TextBox>
-    
-                    <span class="absolute start-3 top-3 -translate-y-1/2 text-xs text-slate-400  transition-all peer-placeholder-shown:top-1/2 peer-placeholder-shown:text-sm peer-focus:top-3 peer-focus:text-xs">
-                        Direccion
-                    </span>
-                </div>
+                        <asp:TextBox runat="server" ID="txtProvincia" 
+                            CssClass="peer h-8 w-full border-none bg-transparent p-0 placeholder-transparent focus:border-transparent focus:outline-none focus:ring-0 sm:text-sm" placeholder="Nombre">
+                        </asp:TextBox>
+                         <span class="absolute start-3 top-3 -translate-y-1/2 text-xs text-slate-400  transition-all peer-placeholder-shown:top-1/2 peer-placeholder-shown:text-sm peer-focus:top-3 peer-focus:text-xs">
+                            Provincia
+                        </span>
                     </div>
-               <%}%>
-
-            
-
-
-          
-
+                    <div class="bg-slate-800 relative block overflow-hidden rounded-md border border-slate-900 px-3 pt-3 shadow-sm focus-within:border-slate-600 focus-within:ring-1 focus-within:ring-slate-600">
+                        <asp:TextBox runat="server" ID="txtCiudad" 
+                            CssClass="peer h-8 w-full border-none bg-transparent p-0 placeholder-transparent focus:border-transparent focus:outline-none focus:ring-0 sm:text-sm" placeholder="Nombre">
+                        </asp:TextBox>
+                         <span class="absolute start-3 top-3 -translate-y-1/2 text-xs text-slate-400  transition-all peer-placeholder-shown:top-1/2 peer-placeholder-shown:text-sm peer-focus:top-3 peer-focus:text-xs">
+                            Ciudad
+                        </span>
+                    </div>
+                    <div class="bg-slate-800 relative block overflow-hidden rounded-md border border-slate-900 px-3 pt-3 shadow-sm focus-within:border-slate-600 focus-within:ring-1 focus-within:ring-slate-600">
+                        <asp:TextBox runat="server" ID="txtCalle" 
+                            CssClass="peer h-8 w-full border-none bg-transparent p-0 placeholder-transparent focus:border-transparent focus:outline-none focus:ring-0 sm:text-sm" placeholder="Nombre">
+                        </asp:TextBox>
+                         <span class="absolute start-3 top-3 -translate-y-1/2 text-xs text-slate-400  transition-all peer-placeholder-shown:top-1/2 peer-placeholder-shown:text-sm peer-focus:top-3 peer-focus:text-xs">
+                            Calle
+                        </span>
+                    </div>
+                    <div class="bg-slate-800 relative block overflow-hidden rounded-md border border-slate-900 px-3 pt-3 shadow-sm focus-within:border-slate-600 focus-within:ring-1 focus-within:ring-slate-600">
+                        <asp:TextBox runat="server" ID="txtNumero" 
+                            CssClass="peer h-8 w-full border-none bg-transparent p-0 placeholder-transparent focus:border-transparent focus:outline-none focus:ring-0 sm:text-sm" placeholder="Nombre">
+                        </asp:TextBox>
+                         <span class="absolute start-3 top-3 -translate-y-1/2 text-xs text-slate-400  transition-all peer-placeholder-shown:top-1/2 peer-placeholder-shown:text-sm peer-focus:top-3 peer-focus:text-xs">
+                            Numero
+                        </span>
+                    </div>
+                    <div class="bg-slate-800 relative block overflow-hidden rounded-md border border-slate-900 px-3 pt-3 shadow-sm focus-within:border-slate-600 focus-within:ring-1 focus-within:ring-slate-600">
+                        <asp:TextBox runat="server" ID="txtDepartamento" 
+                            CssClass="peer h-8 w-full border-none bg-transparent p-0 placeholder-transparent focus:border-transparent focus:outline-none focus:ring-0 sm:text-sm" placeholder="Nombre">
+                        </asp:TextBox>
+                         <span class="absolute start-3 top-3 -translate-y-1/2 text-xs text-slate-400  transition-all peer-placeholder-shown:top-1/2 peer-placeholder-shown:text-sm peer-focus:top-3 peer-focus:text-xs">
+                            Departamento
+                        </span>
+                    </div>
+                    <div class="bg-slate-800 relative block overflow-hidden rounded-md border border-slate-900 px-3 pt-3 shadow-sm focus-within:border-slate-600 focus-within:ring-1 focus-within:ring-slate-600">
+                        <asp:TextBox runat="server" ID="txtPiso" 
+                            CssClass="peer h-8 w-full border-none bg-transparent p-0 placeholder-transparent focus:border-transparent focus:outline-none focus:ring-0 sm:text-sm" placeholder="Nombre">
+                        </asp:TextBox>
+                         <span class="absolute start-3 top-3 -translate-y-1/2 text-xs text-slate-400  transition-all peer-placeholder-shown:top-1/2 peer-placeholder-shown:text-sm peer-focus:top-3 peer-focus:text-xs">
+                            Piso
+                        </span>
+                    </div>
+                    <div class="bg-slate-800 relative block overflow-hidden rounded-md border border-slate-900 px-3 pt-3 shadow-sm focus-within:border-slate-600 focus-within:ring-1 focus-within:ring-slate-600">
+                        <asp:TextBox runat="server" ID="txtCodigoPostal" 
+                            CssClass="peer h-8 w-full border-none bg-transparent p-0 placeholder-transparent focus:border-transparent focus:outline-none focus:ring-0 sm:text-sm" placeholder="Nombre">
+                        </asp:TextBox>
+                         <span class="absolute start-3 top-3 -translate-y-1/2 text-xs text-slate-400  transition-all peer-placeholder-shown:top-1/2 peer-placeholder-shown:text-sm peer-focus:top-3 peer-focus:text-xs">
+                            Codigo Postal
+                        </span>
+                    </div>
+                    <div class="bg-slate-800 relative block overflow-hidden rounded-md border border-slate-900 px-3 pt-3 shadow-sm focus-within:border-slate-600 focus-within:ring-1 focus-within:ring-slate-600">
+                        <asp:TextBox runat="server" ID="txtReferencia" 
+                            CssClass="peer h-8 w-full border-none bg-transparent p-0 placeholder-transparent focus:border-transparent focus:outline-none focus:ring-0 sm:text-sm" placeholder="Nombre">
+                        </asp:TextBox>
+                         <span class="absolute start-3 top-3 -translate-y-1/2 text-xs text-slate-400  transition-all peer-placeholder-shown:top-1/2 peer-placeholder-shown:text-sm peer-focus:top-3 peer-focus:text-xs">
+                            Referencia
+                        </span>
+                    </div>
+                 </div>
                 <div class="col-span-6 sm:flex sm:items-end sm:gap-4 space-y-2 pt-2 float-right">
                     <button class="inline-block shrink-0 rounded-md border border-slate-700 bg-slate-800 px-12 py-3 text-sm font-medium text-white transition hover:bg-slate-800 hover:text-slate-400 focus:outline-none focus:ring active:text-slate-500">
-                        Continuar
+                        Editar Domicilio
                     </button>
                 </div>
+               <%}%>
         </form>
                 </div>
             </div>
@@ -141,9 +197,6 @@
                     <label for="retiroEnvio" class="ml-2 text-sm font-medium text-slate-300 ">Retirar por domicilio del vendedor</label>
                 </div>
                 <div class="col-span-6 sm:flex sm:items-end sm:gap-4 space-y-2 pt-2 float-right">
-                <button class="inline-block shrink-0 rounded-md border border-slate-700 bg-slate-800 px-12 py-3 text-sm font-medium text-white transition hover:bg-slate-800 hover:text-slate-400 focus:outline-none focus:ring active:text-slate-500">
-                    Continuar
-                </button>
             </div>
             </div>
 
@@ -173,14 +226,15 @@
             </dl>
 
             
-
+            <%if (usuario != null) { %> 
             <div class="flex justify-end">
               <a
                 href="Comprar.aspx"
                 class="block rounded bg-slate-700 px-5 py-3 text-sm text-slate-100 transition hover:bg-slate-600"
-              >
+                >
                 Comprar
               </a>
+             <%}%>
             </div>
           </div>
         </div>

@@ -7,6 +7,28 @@ namespace Negocio
 {
     public class Domicilios
         {
+        public static Domicilio ListarPorId(int Id)
+        {
+            AccesoDatos acceso = new AccesoDatos();
+
+            var lector = acceso.Leer("SELECT * FROM Domicilio WHERE Id = " + Id + " ORDER BY Id");
+            if (!lector.Read()) return null;
+            Domicilio domicilio = new Domicilio
+            {
+                Id = (int)lector["Id"],
+                Calle = (string)lector["Calle"],
+                Ciudad = (string)lector["Ciudad"],
+                Departamento = (string)lector["Departamento"],
+                Numero = (int)lector["Numero"],
+                Piso = (int)lector["Piso"],
+                Provincia = (string)lector["Provincia"],
+                Referencia = (string)lector["Referencia"],
+                CodigoPostal = (int)lector["CodigoPostal"],
+            };
+
+            return domicilio;
+        }
+
         public static List<Domicilio> Listar()
         {
             AccesoDatos acceso = new AccesoDatos();
@@ -18,16 +40,15 @@ namespace Negocio
             {
                 Domicilio aux = new Domicilio()
                 {
-                    //Id = (int)lector["Id"],
-                    //Apellidos = (string)lector["Apellidos"],
-                    //Nombres = (string)lector["Nombre"],
-                    //DNI = (string)lector["DNI"],
-                    //Email = (string)lector["Email"],
-                    //FechaNacimiento = (DateTime)lector["FechaNacimiento"],
-                    //Password = (string)lector["Password"],
-                    //Telefono = (string)lector["Telefono"],
-                    //IdTipoUsuario = (int)lector["IdTipoUsuario"],
-                    //IdDomicilio = (int)lector["IdDomicilio"],
+                    Id = (int)lector["Id"],
+                    Calle = (string)lector["Calle"],
+                    Ciudad = (string)lector["Ciudad"],
+                    Departamento = (string)lector["Departamento"],
+                    Numero = (int)lector["Numero"],
+                    Piso = (int)lector["Piso"],
+                    Provincia = (string)lector["Provincia"],
+                    Referencia = (string)lector["Referencia"],
+                    CodigoPostal = (int)lector["CodigoPostal"],
                 };
 
                 domicilios.Add(aux);
@@ -35,8 +56,6 @@ namespace Negocio
 
             return domicilios;
         }
-
-        
 
     }
 }

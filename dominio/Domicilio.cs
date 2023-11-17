@@ -13,5 +13,6 @@ namespace dominio
         public int Piso { get; set; }
         public string Provincia { get; set; }
         public string Referencia { get; set; }
+        public int CodigoPostal { get; set; }
     }
 }
