@@ -27,7 +27,7 @@
                 <button class="inline-block text-slate-400 hover:text-slate-300 hover:border-slate-300 rounded-t-lg py-4 px-4 text-sm font-medium text-center border-transparent border-b-2 active" id="pedidos-tab" data-tabs-target="#pedidos" type="button" role="tab" aria-controls="pedidos" aria-selected="true">Pedidos</button>
             </li>
             <li class="mr-2" role="presentation">
-                <button class="inline-block text-slate-400 hover:text-slate-300 hover:border-slate-300 rounded-t-lg py-4 px-4 text-sm font-medium text-center border-transparent border-b-2" id="direcciones-tab" data-tabs-target="#direcciones" type="button" role="tab" aria-controls="direcciones" aria-selected="false">Direcciones</button>
+                <button class="inline-block text-slate-400 hover:text-slate-300 hover:border-slate-300 rounded-t-lg py-4 px-4 text-sm font-medium text-center border-transparent border-b-2" id="domicilio-tab" data-tabs-target="#domicilio" type="button" role="tab" aria-controls="domicilio" aria-selected="false">Domicilio</button>
             </li>
             <li role="presentation">
                 <button class="inline-block text-slate-400 hover:text-slate-300 hover:border-slate-300 rounded-t-lg py-4 px-4 text-sm font-medium text-center border-transparent border-b-2" id="informacion-tab" data-tabs-target="#informacion" type="button" role="tab" aria-controls="informacion" aria-selected="false">Informacion de cuenta</button>
@@ -41,12 +41,81 @@
         <div class="p-4 rounded-lg bg-slate-900" id="pedidos" role="tabpanel" aria-labelledby="pedidos-tab">
             <p class="text-slate-400 text-sm">pestaña de pedidos</p>
         </div>
-        <div class="p-4 rounded-lg bg-slate-900 hidden" id="direcciones" role="tabpanel" aria-labelledby="direcciones-tab">
-            <p class="text-slate-400 text-sm">pestaña de direcciones</p>
+        <div class="p-4 rounded-lg bg-slate-900 hidden" id="domicilio" role="tabpanel" aria-labelledby="domicilio-tab">
+            <p class="text-slate-400 text-sm">
+
+                <div class="grid grid-cols-1 gap-6 mt-4 sm:grid-cols-2 w-max">
+                    <div>
+                        <label for="tbCalle" class="mb-2 text-sm font-medium text-slate-400">Calle</label>
+                    </div>
+
+                    <div>
+                        <asp:TextBox runat="server" type="text" id="tbCalle" placeholder="Calle" name="calle" cssclass="bg-slate-800 block w-full rounded-md border border-slate-900 px-3 py-2 shadow-sm focus-within:border-slate-600 focus-within:ring-1 focus-within:ring-slate-600 text-slate-200"></asp:TextBox>
+                    </div>
+
+                    <div>
+                        <label for="tbCiudad" class="mb-2 text-sm font-medium text-slate-400">Ciudad/s</label>
+                    </div>
+
+                    <div>
+                        <asp:TextBox runat="server" type="text" id="tbCiudad" placeholder="Ciudad" name="ciudad" cssclass="bg-slate-800 block w-full rounded-md border border-slate-900 px-3 py-2 shadow-sm focus-within:border-slate-600 focus-within:ring-1 focus-within:ring-slate-600 text-slate-200"></asp:TextBox>
+                    </div>
+
+                    <div>
+                        <label for="tbDepartamento" class="mb-2 text-sm font-medium text-slate-400">Departamento</label>
+                    </div>
+
+                    <div>
+                        <asp:TextBox runat="server" type="text" id="tbDepartamento" placeholder="Departamento" name="departamento" readonly="true" cssclass="bg-slate-800 block w-full rounded-md border border-slate-900 px-3 py-2 shadow-sm focus-within:border-slate-600 focus-within:ring-1 focus-within:ring-slate-600 text-slate-200"></asp:TextBox>
+                    </div>
+
+                    <div>
+                        <label for="tbNumero" class="mb-2 text-sm font-medium text-slate-400">Numero</label>
+                    </div>
+
+                    <div>
+                        <asp:TextBox runat="server" type="text" id="tbNumero" placeholder="Numero" name="numero" cssclass="bg-slate-800 block w-full rounded-md border border-slate-900 px-3 py-2 shadow-sm focus-within:border-slate-600 focus-within:ring-1 focus-within:ring-slate-600 text-slate-200"></asp:TextBox>
+                    </div>
+
+                    <div>
+                        <label for="tbPiso" class="mb-2 text-sm font-medium text-slate-400">Piso</label>
+                    </div>
+
+                    <div>
+                        <asp:TextBox runat="server" type="text" id="tbPiso" placeholder="Piso" name="piso" cssclass="bg-slate-800 block w-full rounded-md border border-slate-900 px-3 py-2 shadow-sm focus-within:border-slate-600 focus-within:ring-1 focus-within:ring-slate-600 text-slate-200"></asp:TextBox>
+                    </div>
+
+                    <div>
+                        <label for="tbProvincia" class="mb-2 text-sm font-medium text-slate-400">Provincia</label>
+                    </div>
+
+                    <div>
+                        <asp:TextBox runat="server" type="text" id="tbProvincia" placeholder="Provincia" name="provincia" cssclass="bg-slate-800 block w-full rounded-md border border-slate-900 px-3 py-2 shadow-sm focus-within:border-slate-600 focus-within:ring-1 focus-within:ring-slate-600 text-slate-200"></asp:TextBox>
+                    </div>
+
+                    <div>
+                        <label for="tbCP" class="mb-2 text-sm font-medium text-slate-400">Codigo Postal</label>
+                    </div>
+
+                    <div>
+                        <asp:TextBox runat="server" type="text" id="tbCP" placeholder="Codigo Postal" name="cp" cssclass="bg-slate-800 block w-full rounded-md border border-slate-900 px-3 py-2 shadow-sm focus-within:border-slate-600 focus-within:ring-1 focus-within:ring-slate-600 text-slate-200"></asp:TextBox>
+                    </div>
+                    <div>
+                        <label for="tbReferencia" class="mb-2 text-sm font-medium text-slate-400">Referencia</label>
+                    </div>
+
+                    <div>
+                        <asp:TextBox runat="server" type="text" id="tbReferencia" placeholder="Referencia" name="referencia" cssclass="bg-slate-800 block w-full rounded-md border border-slate-900 px-3 py-2 shadow-sm focus-within:border-slate-600 focus-within:ring-1 focus-within:ring-slate-600 text-slate-200"></asp:TextBox>
+                    </div>
+                </div>
+
+                <button class="inline-block shrink-0 rounded-md border border-emerald-700 bg-emerald-800 px-12 py-3 mt-5 text-sm font-medium text-white transition hover:bg-slate-800 hover:text-slate-400 focus:outline-none focus:ring active:text-slate-500">
+                Guardar
+            </button>
+            </p>
         </div>
         <div class="p-4 rounded-lg bg-slate-900 hidden" id="informacion" role="tabpanel" aria-labelledby="informacion-tab">
             <p class="text-slate-400 text-sm space-y-2">
-                pestaña de informacion personal
 
                 <div class="grid grid-cols-1 gap-6 mt-4 sm:grid-cols-2 w-max">
                     <div class="text-slate-200">
@@ -121,6 +190,10 @@
                         <asp:TextBox runat="server" type="text" id="tb2Pwd" placeholder="Confirmar contraseña" name="pwd2" cssclass="bg-slate-800 block w-full rounded-md border border-slate-900 px-3 py-2 shadow-sm focus-within:border-slate-600 focus-within:ring-1 focus-within:ring-slate-600 text-slate-200"></asp:TextBox>
                     </div>
                 </div>
+
+                <button class="inline-block shrink-0 rounded-md border border-emerald-700 bg-emerald-800 px-12 py-3 mt-5 text-sm font-medium text-white transition hover:bg-slate-800 hover:text-slate-400 focus:outline-none focus:ring active:text-slate-500">
+                Guardar
+            </button>
 
             </p>
         </div>
