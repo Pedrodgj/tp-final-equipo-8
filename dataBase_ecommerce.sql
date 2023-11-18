@@ -94,3 +94,4 @@ CREATE TABLE DetalleCompra (
   CONSTRAINT FK_Articulo_DetalleCompra FOREIGN KEY (IdArticulo) REFERENCES Articulos(Id)
 );
 
+SELECT * FROM Usuario

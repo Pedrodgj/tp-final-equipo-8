@@ -153,12 +153,12 @@
         %>
 
         <a href="VerProducto.aspx?id=<%: art.Id %>" class="group" data-categoria="<%: art.Categoria %>" data-marca="<%: art.Marca %>">
-        <div class="aspect-h-1 aspect-w-1 w-full overflow-hidden rounded-lg bg-gray-200 xl:aspect-h-8 xl:aspect-w-7">
+        <div class="aspect-h-1 aspect-w-1 w-full overflow-hidden rounded-lg bg-slate-700 xl:aspect-h-8 xl:aspect-w-7">
           <img src="<%: imagen %>" alt="Ejemplo" class="h-full w-full object-cover object-center group-hover:opacity-75">
         </div>
-        <h3 class="mt-4 text-sm text-gray-700">
+        <h3 class="mt-4 text-sm text-slate-200">
             <asp:Label ID="infoProducto" runat="server"></asp:Label></h3>
-        <p class="mt-1 text-lg font-medium text-gray-900"><%: string.Format(pesos, "{0:C}" , art.Precio) %></p>
+        <p class="mt-1 text-lg font-medium text-slate-300"><%: string.Format(pesos, "{0:C}" , art.Precio) %></p>
       </a>
                     <% } %>
 
