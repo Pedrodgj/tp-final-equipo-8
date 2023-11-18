@@ -80,6 +80,7 @@
     <Content Include="imagenes\404.png" />
     <Content Include="InicioSesion.aspx" />
     <Content Include="lista.css" />
+    <Content Include="PedidoFinalizado.aspx" />
     <Content Include="Perfil.aspx" />
     <Content Include="Productos.aspx" />
     <Content Include="Registro.aspx" />
@@ -199,6 +200,13 @@
     </Compile>
     <Compile Include="Master.Master.designer.cs">
       <DependentUpon>Master.Master</DependentUpon>
+    </Compile>
+    <Compile Include="PedidoFinalizado.aspx.cs">
+      <DependentUpon>PedidoFinalizado.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PedidoFinalizado.aspx.designer.cs">
+      <DependentUpon>PedidoFinalizado.aspx</DependentUpon>
     </Compile>
     <Compile Include="Perfil.aspx.cs">
       <DependentUpon>Perfil.aspx</DependentUpon>

@@ -32,7 +32,7 @@
                       </span>
                   </label>--%>
                     <div class="bg-slate-800 relative block overflow-hidden rounded-md border border-slate-900 px-3 pt-3 shadow-sm focus-within:border-slate-600 focus-within:ring-1 focus-within:ring-slate-600">
-                      <asp:TextBox runat="server" ID="txtNombre" CssClass="peer h-8 w-full border-none bg-transparent p-0 placeholder-transparent focus:border-transparent focus:outline-none focus:ring-0 sm:text-sm" placeholder="Nombre"></asp:TextBox>
+                      <asp:TextBox runat="server" ID="txtNombre" CssClass="text-slate-300 peer h-8 w-full border-none bg-transparent p-0 placeholder-transparent focus:border-transparent focus:outline-none focus:ring-0 sm:text-sm" placeholder="Nombre"></asp:TextBox>
     
                       <span class="absolute start-3 top-3 -translate-y-1/2 text-xs text-slate-400  transition-all peer-placeholder-shown:top-1/2 peer-placeholder-shown:text-sm peer-focus:top-3 peer-focus:text-xs">
                           Nombre
@@ -40,7 +40,7 @@
                   </div>
 
                   <label for="Apellido" class="bg-slate-800 relative block overflow-hidden rounded-md border border-slate-900 px-3 pt-3 shadow-sm focus-within:border-slate-600 focus-within:ring-1 focus-within:ring-slate-600">
-                      <input type="text" id="Apellido" placeholder="Apellido" class="peer h-8 w-full border-none bg-transparent p-0 placeholder-transparent focus:border-transparent focus:outline-none focus:ring-0 sm:text-sm"/>
+                      <input type="text" id="Apellido" placeholder="Apellido" class="text-slate-300 peer h-8 w-full border-none bg-transparent p-0 placeholder-transparent focus:border-transparent focus:outline-none focus:ring-0 sm:text-sm"/>
 
                       <span class="absolute start-3 top-3 -translate-y-1/2 text-xs text-slate-400  transition-all peer-placeholder-shown:top-1/2 peer-placeholder-shown:text-sm peer-focus:top-3 peer-focus:text-xs">
                           Apellido
@@ -48,7 +48,7 @@
                   </label>
 
                   <label for="UserEmail" class="bg-slate-800 relative block overflow-hidden rounded-md border border-slate-900 px-3 pt-3 shadow-sm focus-within:border-slate-600 focus-within:ring-1 focus-within:ring-slate-600">
-                      <input type="email" id="UserEmail" placeholder="Email" class="peer h-8 w-full border-none bg-transparent p-0 placeholder-transparent focus:border-transparent focus:outline-none focus:ring-0 sm:text-sm"/>
+                      <input type="email" id="UserEmail" placeholder="Email" class="text-slate-300 peer h-8 w-full border-none bg-transparent p-0 placeholder-transparent focus:border-transparent focus:outline-none focus:ring-0 sm:text-sm"/>
 
                       <span class="absolute start-3 top-3 -translate-y-1/2 text-xs text-slate-400 transition-all peer-placeholder-shown:top-1/2 peer-placeholder-shown:text-sm peer-focus:top-3 peer-focus:text-xs">
                           Email
@@ -56,7 +56,7 @@
                   </label>
 
                   <label for="Password" class="bg-slate-800 relative block overflow-hidden rounded-md border border-slate-900 px-3 pt-3 shadow-sm focus-within:border-slate-600 focus-within:ring-1 focus-within:ring-slate-600">
-                      <input type="password" id="Password" placeholder="Password" class="peer h-8 w-full border-none bg-transparent p-0 placeholder-transparent focus:border-transparent focus:outline-none focus:ring-0 sm:text-sm"/>
+                      <input type="password" id="Password" placeholder="Contraseña" class="text-slate-300 peer h-8 w-full border-none bg-transparent p-0 placeholder-transparent focus:border-transparent focus:outline-none focus:ring-0 sm:text-sm"/>
 
                       <span class="absolute start-3 top-3 -translate-y-1/2 text-xs text-slate-400 transition-all peer-placeholder-shown:top-1/2 peer-placeholder-shown:text-sm peer-focus:top-3 peer-focus:text-xs">
                           Contraseña
@@ -64,7 +64,7 @@
                   </label>
 
                   <label for="PasswordConfirmation" class="bg-slate-800 relative block overflow-hidden rounded-md border border-slate-900 px-3 pt-3 shadow-sm focus-within:border-slate-600 focus-within:ring-1 focus-within:ring-slate-600">
-                      <input type="password" id="PasswordConfirmation" placeholder="Password Confirmation" class="peer h-8 w-full border-none bg-transparent p-0 placeholder-transparent focus:border-transparent focus:outline-none focus:ring-0 sm:text-sm"/>
+                      <input type="password" id="PasswordConfirmation" placeholder="Confirmar contraseña" class="text-slate-300 peer h-8 w-full border-none bg-transparent p-0 placeholder-transparent focus:border-transparent focus:outline-none focus:ring-0 sm:text-sm"/>
 
                       <span class="absolute start-3 top-3 -translate-y-1/2 text-xs text-slate-400 transition-all peer-placeholder-shown:top-1/2 peer-placeholder-shown:text-sm peer-focus:top-3 peer-focus:text-xs">
                           Confirmar contraseña
@@ -90,13 +90,13 @@
                     <div class="col-span-6 sm:flex sm:items-center sm:gap-4 space-y-2">
                         <p class="mt-4 text-sm text-slate-300 sm:mt-0">
                         Ya tenes una cuenta?
-                        <a href="#" class="text-slate-400 underline">Iniciar sesion</a>.
+                        <a href="InicioSesion.aspx" class="text-slate-400 underline">Iniciar sesion</a>.
                       </p>
                     </div>
               <% } else
                 { %>
                 <button type="button" class="accordion flex items-center justify-between w-full p-5 font-medium text-left text-slate-300 bg-slate-900" data-accordion-target="#accordion-collapse-body-1" aria-expanded="true" aria-controls="accordion-collapse-body-1">
-                    <span>Informacion de Domicilio</span>
+                    <span>Informacion del domicilio</span>
                     <svg data-accordion-icon class="w-3 h-3 rotate-180 shrink-0" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
                       <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5 5 1 1 5"/>
                     </svg>
@@ -107,7 +107,7 @@
                 <div class="col-span-6 space-y-2">
                     <div class="bg-slate-800 relative block overflow-hidden rounded-md border border-slate-900 px-3 pt-3 shadow-sm focus-within:border-slate-600 focus-within:ring-1 focus-within:ring-slate-600">
                         <asp:TextBox runat="server" ID="txtProvincia" 
-                            CssClass="peer h-8 w-full border-none bg-transparent p-0 placeholder-transparent focus:border-transparent focus:outline-none focus:ring-0 sm:text-sm" placeholder="Nombre">
+                            CssClass="text-slate-300 peer h-8 w-full border-none bg-transparent p-0 placeholder-transparent focus:border-transparent focus:outline-none focus:ring-0 sm:text-sm" placeholder="Nombre">
                         </asp:TextBox>
                          <span class="absolute start-3 top-3 -translate-y-1/2 text-xs text-slate-400  transition-all peer-placeholder-shown:top-1/2 peer-placeholder-shown:text-sm peer-focus:top-3 peer-focus:text-xs">
                             Provincia
@@ -115,7 +115,7 @@
                     </div>
                     <div class="bg-slate-800 relative block overflow-hidden rounded-md border border-slate-900 px-3 pt-3 shadow-sm focus-within:border-slate-600 focus-within:ring-1 focus-within:ring-slate-600">
                         <asp:TextBox runat="server" ID="txtCiudad" 
-                            CssClass="peer h-8 w-full border-none bg-transparent p-0 placeholder-transparent focus:border-transparent focus:outline-none focus:ring-0 sm:text-sm" placeholder="Nombre">
+                            CssClass="text-slate-300 peer h-8 w-full border-none bg-transparent p-0 placeholder-transparent focus:border-transparent focus:outline-none focus:ring-0 sm:text-sm" placeholder="Nombre">
                         </asp:TextBox>
                          <span class="absolute start-3 top-3 -translate-y-1/2 text-xs text-slate-400  transition-all peer-placeholder-shown:top-1/2 peer-placeholder-shown:text-sm peer-focus:top-3 peer-focus:text-xs">
                             Ciudad
@@ -123,7 +123,7 @@
                     </div>
                     <div class="bg-slate-800 relative block overflow-hidden rounded-md border border-slate-900 px-3 pt-3 shadow-sm focus-within:border-slate-600 focus-within:ring-1 focus-within:ring-slate-600">
                         <asp:TextBox runat="server" ID="txtCalle" 
-                            CssClass="peer h-8 w-full border-none bg-transparent p-0 placeholder-transparent focus:border-transparent focus:outline-none focus:ring-0 sm:text-sm" placeholder="Nombre">
+                            CssClass="text-slate-300 peer h-8 w-full border-none bg-transparent p-0 placeholder-transparent focus:border-transparent focus:outline-none focus:ring-0 sm:text-sm" placeholder="Nombre">
                         </asp:TextBox>
                          <span class="absolute start-3 top-3 -translate-y-1/2 text-xs text-slate-400  transition-all peer-placeholder-shown:top-1/2 peer-placeholder-shown:text-sm peer-focus:top-3 peer-focus:text-xs">
                             Calle
@@ -131,7 +131,7 @@
                     </div>
                     <div class="bg-slate-800 relative block overflow-hidden rounded-md border border-slate-900 px-3 pt-3 shadow-sm focus-within:border-slate-600 focus-within:ring-1 focus-within:ring-slate-600">
                         <asp:TextBox runat="server" ID="txtNumero" 
-                            CssClass="peer h-8 w-full border-none bg-transparent p-0 placeholder-transparent focus:border-transparent focus:outline-none focus:ring-0 sm:text-sm" placeholder="Nombre">
+                            CssClass="text-slate-300 peer h-8 w-full border-none bg-transparent p-0 placeholder-transparent focus:border-transparent focus:outline-none focus:ring-0 sm:text-sm" placeholder="Nombre">
                         </asp:TextBox>
                          <span class="absolute start-3 top-3 -translate-y-1/2 text-xs text-slate-400  transition-all peer-placeholder-shown:top-1/2 peer-placeholder-shown:text-sm peer-focus:top-3 peer-focus:text-xs">
                             Numero
@@ -139,7 +139,7 @@
                     </div>
                     <div class="bg-slate-800 relative block overflow-hidden rounded-md border border-slate-900 px-3 pt-3 shadow-sm focus-within:border-slate-600 focus-within:ring-1 focus-within:ring-slate-600">
                         <asp:TextBox runat="server" ID="txtDepartamento" 
-                            CssClass="peer h-8 w-full border-none bg-transparent p-0 placeholder-transparent focus:border-transparent focus:outline-none focus:ring-0 sm:text-sm" placeholder="Nombre">
+                            CssClass="text-slate-300 peer h-8 w-full border-none bg-transparent p-0 placeholder-transparent focus:border-transparent focus:outline-none focus:ring-0 sm:text-sm" placeholder="Nombre">
                         </asp:TextBox>
                          <span class="absolute start-3 top-3 -translate-y-1/2 text-xs text-slate-400  transition-all peer-placeholder-shown:top-1/2 peer-placeholder-shown:text-sm peer-focus:top-3 peer-focus:text-xs">
                             Departamento
@@ -147,7 +147,7 @@
                     </div>
                     <div class="bg-slate-800 relative block overflow-hidden rounded-md border border-slate-900 px-3 pt-3 shadow-sm focus-within:border-slate-600 focus-within:ring-1 focus-within:ring-slate-600">
                         <asp:TextBox runat="server" ID="txtPiso" 
-                            CssClass="peer h-8 w-full border-none bg-transparent p-0 placeholder-transparent focus:border-transparent focus:outline-none focus:ring-0 sm:text-sm" placeholder="Nombre">
+                            CssClass="text-slate-300 peer h-8 w-full border-none bg-transparent p-0 placeholder-transparent focus:border-transparent focus:outline-none focus:ring-0 sm:text-sm" placeholder="Nombre">
                         </asp:TextBox>
                          <span class="absolute start-3 top-3 -translate-y-1/2 text-xs text-slate-400  transition-all peer-placeholder-shown:top-1/2 peer-placeholder-shown:text-sm peer-focus:top-3 peer-focus:text-xs">
                             Piso
@@ -155,7 +155,7 @@
                     </div>
                     <div class="bg-slate-800 relative block overflow-hidden rounded-md border border-slate-900 px-3 pt-3 shadow-sm focus-within:border-slate-600 focus-within:ring-1 focus-within:ring-slate-600">
                         <asp:TextBox runat="server" ID="txtCodigoPostal" 
-                            CssClass="peer h-8 w-full border-none bg-transparent p-0 placeholder-transparent focus:border-transparent focus:outline-none focus:ring-0 sm:text-sm" placeholder="Nombre">
+                            CssClass="text-slate-300 peer h-8 w-full border-none bg-transparent p-0 placeholder-transparent focus:border-transparent focus:outline-none focus:ring-0 sm:text-sm" placeholder="Nombre">
                         </asp:TextBox>
                          <span class="absolute start-3 top-3 -translate-y-1/2 text-xs text-slate-400  transition-all peer-placeholder-shown:top-1/2 peer-placeholder-shown:text-sm peer-focus:top-3 peer-focus:text-xs">
                             Codigo Postal
@@ -163,7 +163,7 @@
                     </div>
                     <div class="bg-slate-800 relative block overflow-hidden rounded-md border border-slate-900 px-3 pt-3 shadow-sm focus-within:border-slate-600 focus-within:ring-1 focus-within:ring-slate-600">
                         <asp:TextBox runat="server" ID="txtReferencia" 
-                            CssClass="peer h-8 w-full border-none bg-transparent p-0 placeholder-transparent focus:border-transparent focus:outline-none focus:ring-0 sm:text-sm" placeholder="Nombre">
+                            CssClass="text-slate-300 peer h-8 w-full border-none bg-transparent p-0 placeholder-transparent focus:border-transparent focus:outline-none focus:ring-0 sm:text-sm" placeholder="Nombre">
                         </asp:TextBox>
                          <span class="absolute start-3 top-3 -translate-y-1/2 text-xs text-slate-400  transition-all peer-placeholder-shown:top-1/2 peer-placeholder-shown:text-sm peer-focus:top-3 peer-focus:text-xs">
                             Referencia
@@ -229,7 +229,7 @@
             <%if (usuario != null) { %> 
             <div class="flex justify-end">
               <a
-                href="Comprar.aspx"
+                href="PedidoFinalizado.aspx"
                 class="block rounded bg-slate-700 px-5 py-3 text-sm text-slate-100 transition hover:bg-slate-600"
                 >
                 Comprar

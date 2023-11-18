@@ -18,7 +18,78 @@ namespace tp_carrito_compras_equipo_20
         private decimal ivaPorcentaje = 0.21m;
         protected void Page_Load(object sender, EventArgs e)
         {
+            var id = Request.QueryString["id"];
+            var delete = Request.QueryString["delete"];
+            var deleteAll = Request.QueryString["deleteAll"];
+            bool primerArticulo;
+
             articulos = (List<Articulo>)Session["articulos"];
+            if (articulos == null)
+            {
+                primerArticulo = true;
+            }
+            else
+            {
+                primerArticulo = false;
+            }
+            if (primerArticulo == true)
+            {
+                articulos = new List<Articulo>();
+                if (id != null)
+                {
+                    Articulo art = Articulos.Ver(id);
+                    art.Cantidad = art.Cantidad + 1;
+                    articulos.Add(art);
+                    Session["articulos"] = articulos;
+                    //return;
+                }
+            }
+            else
+            {
+                List<Articulo> articulosTotal = Articulos.Listar();
+
+                if (id != null)
+                {
+                    bool exist = false;
+                    foreach (var art in articulosTotal)
+                    {
+                        if (id == art.Id.ToString())
+                        {
+                            foreach (var articu in articulos)
+                            {
+                                if (art.Id == articu.Id)
+                                {
+                                    articu.Cantidad = articu.Cantidad + 1;
+                                    exist = true;
+                                }
+                            }
+
+                            if (exist != true)
+                            {
+                                art.Cantidad = art.Cantidad + 1;
+                                articulos.Add(art);
+                            }
+                        }
+                    }
+                }
+
+                Session["articulos"] = articulos;
+            }
+
+
+            decimal total = 0;
+            foreach (var arti in articulos)
+            {
+                total += (arti.Precio * arti.Cantidad);
+                cantidadArticulos += arti.Cantidad;
+            }
+
+            lblTotal.Text = string.Format(pesos, "{0:C}", total);
+            decimal totalConIva = total * ivaPorcentaje;
+            lblIva.Text = string.Format(pesos, "{0:C}", totalConIva);
+            decimal totalAPagar = total + totalConIva;
+            lblTotalPagar.Text = string.Format(pesos, "{0:C}", totalAPagar);
+            Session["cantArticulos"] = cantidadArticulos;
         }
     }
 }
