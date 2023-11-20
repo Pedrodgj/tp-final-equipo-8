@@ -4,6 +4,21 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
 
     <section>
+
+            <% if (Session["Msg_error"] != null)
+            { %>
+            <div class="bg-red-200 p-10 absolute top-2 right-2">
+                <%= Session["Msg_error"] %>
+                <% Session["Msg_error"] = null; %>
+            </div>
+        <%} %>
+        <% if (Session["Msg_ok"] != null)
+            { %>
+            <div class="bg-green-200 p-10 absolute top-2 right-2">
+                <%= Session["Msg_ok"] %>
+                <% Session["Msg_ok"] = null; %>
+            </div>
+        <%} %>
   <div class="mx-auto max-w-screen-xl px-4 py-8 sm:px-6 sm:py-12 lg:px-8">
     <div class="mx-auto max-w-3xl">
       <header class="text-center">

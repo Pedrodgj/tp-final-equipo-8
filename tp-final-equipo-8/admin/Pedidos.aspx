@@ -8,32 +8,75 @@
     <thead class="ltr:text-left rtl:text-right">
       <tr>
         <th class="whitespace-nowrap px-4 py-2 font-medium text-slate-400">
-          Pedido #
+          Codigo Seguimiento #
         </th>
         <th class="whitespace-nowrap px-4 py-2 font-medium text-slate-400">
-          Cliente
+          Id Compra #
         </th>
         <th class="whitespace-nowrap px-4 py-2 font-medium text-slate-400">
-          Cantidad de productos
+          Detalles
         </th>
+       
         <th class="whitespace-nowrap px-4 py-2 font-medium text-slate-400">
           Total
         </th>
           <th class="whitespace-nowrap px-4 py-2 font-medium text-slate-400">
-          Estado
+          Actual Estado
         </th>
+        <th class="whitespace-nowrap px-4 py-2 font-medium text-slate-400">
+           Nuevo Estado
+         </th>
         <th class="px-4 py-2"></th>
       </tr>
     </thead>
 
     <tbody class="divide-y divide-slate-600">
+      <% foreach (var com in compras) 
+          { %>   
       <tr>
         <td class="whitespace-nowrap px-4 py-2 font-medium text-slate-500">
-          CODIGO PEDIDO
+          <asp:Label ID="lblCodigo" runat="server" CssClass="whitespace-nowrap px-4 py-2 font-medium text-slate-500" Text="Codigo"></asp:Label>
         </td>
-        <td class="whitespace-nowrap px-4 py-2 text-slate-500">NOMBRE CLIENTE</td>
-        <td class="whitespace-nowrap px-4 py-2 text-slate-500">CANT PRODUCTOS</td>
-        <td class="whitespace-nowrap px-4 py-2 text-slate-500">TOTAL PEDIDO</td>
+        <td class="whitespace-nowrap px-4 py-2 text-slate-500"><%= com.Id %></td>
+        <td class="whitespace-nowrap px-4 py-2 text-slate-500">
+            <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded openModalBtn">
+                Abrir Modal
+            </button>
+        </td>
+        <% decimal totalPrecio = com.Detalles.Sum(prod => prod.Total); %>
+        <td class="whitespace-nowrap px-4 py-2 text-slate-500"><%= string.Format(pesos, "{0:C}", totalPrecio) %>
+        <%--<td class="whitespace-nowrap px-4 py-2 text-slate-500">--%>
+          <div class="modal hidden fixed top-0 left-0 w-full h-full bg-black bg-opacity-50 flex justify-center items-center myModal">
+            <div class="bg-white p-8 rounded shadow-md">
+                <span class="block font-bold mb-4">Detalle Compra</span>
+                <table class="table-fixed">
+                    <thead>
+                        <tr>
+                            <th>Articulo Id</th>
+                            <th>Cantidad</th>
+                            <th>Precio Unitario</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <%foreach (var detalle in com.Detalles)
+                            {%>
+                                <tr>
+                                    <td><%= detalle.IdArticulo %></td>
+                                    <td><%= detalle.Cantidad %></td>
+                                    <td><%= string.Format(pesos, "{0:C}", detalle.PrecioUnitario) %></td>
+                                </tr>
+
+                           <% } %>
+                    </tbody>
+                </table>
+                <button type="button" class="mt-4 bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded closeModalBtn">
+                    Cerrar Modal
+                </button>
+             </div>
+          </div>
+        </td>
+
+        <td class="whitespace-nowrap px-4 py-2 text-slate-500"><%= com.Estado %></td>
         <td class="whitespace-nowrap px-4 py-2 text-slate-500">
             <asp:DropDownList id="marca" CssClass="bg-amber-600 block w-9/12 rounded-md border border-slate-900 px-4 py-2 text-xs font-medium text-white shadow-sm focus-within:border-amber-700 focus-within:ring-1 focus-within:ring-amber-700" runat="server">
             <asp:ListItem Enabled="true" Text= "Nuevo" Value= ""></asp:ListItem>
@@ -51,13 +94,6 @@
             Informar Estado
           </a>
 
-            <%--<a
-            href="#"
-            class="inline-block rounded bg-emerald-800 px-4 py-2 text-xs font-medium text-white hover:bg-emerald-900"
-          >
-            Editar
-          </a>--%>
-
             <a
             href="#"
             class="inline-block rounded bg-red-900 px-4 py-2 text-xs font-medium text-white hover:bg-red-950"
@@ -66,86 +102,11 @@
           </a>
         </td>
       </tr>
-
-      <tr>
-        <td class="whitespace-nowrap px-4 py-2 font-medium text-slate-500">
-          <%--<asp:TextBox ID="txtCodigoPedido" Text="CODIGO PEDIDO" runat="server"  style="border: solid rgba(204, 204, 204, 0.5); padding: 2px; color: #333; border-radius: 5px;" ></asp:TextBox>--%>
-          <asp:Label ID="lblCodigo" runat="server" CssClass="whitespace-nowrap px-4 py-2 font-medium text-slate-500 customLabel" Text="Codigo"></asp:Label>
-
-        </td>
-        
-        <td class="whitespace-nowrap px-4 py-2 text-slate-500">NOMBRE CLIENTE</td>
-        <td class="whitespace-nowrap px-4 py-2 text-slate-500">CANT PRODUCTOS</td>
-        <td class="whitespace-nowrap px-4 py-2 text-slate-500">TOTAL PEDIDO</td>
-        <td class="whitespace-nowrap px-4 py-2 text-slate-500">
-            <asp:DropDownList id="DropDownList1" CssClass="bg-amber-600 block w-9/12 rounded-md border border-slate-900 px-4 py-2 text-xs font-medium text-white shadow-sm focus-within:border-amber-700 focus-within:ring-1 focus-within:ring-amber-700" runat="server">
-            <asp:ListItem Enabled="true" Text= "Pendiente" Value= ""></asp:ListItem>
-            <asp:ListItem Text= "En progreso" Value= ""></asp:ListItem>
-                <asp:ListItem Text= "Completado" Value= ""></asp:ListItem>
-            </asp:DropDownList>
-        </td>
-        <td class="whitespace-nowrap px-4 py-2">
-          <a
-            href="#"
-            class="inline-block rounded bg-emerald-800 px-4 py-2 text-xs font-medium text-white hover:bg-emerald-900"
-          >
-            Ver
-          </a>
-
-            <a
-            href="#"
-            class="inline-block rounded bg-emerald-800 px-4 py-2 text-xs font-medium text-white hover:bg-emerald-900"
-          >
-            Editar
-          </a>
-
-            <a
-            href="#"
-            class="inline-block rounded bg-red-900 px-4 py-2 text-xs font-medium text-white hover:bg-red-950"
-          >
-            Eliminar
-          </a>
-        </td>
-      </tr>
-
-        <tr>
-        <td class="whitespace-nowrap px-4 py-2 font-medium text-slate-500">
-          CODIGO PEDIDO
-        </td>
-        <td class="whitespace-nowrap px-4 py-2 text-slate-500">NOMBRE CLIENTE</td>
-        <td class="whitespace-nowrap px-4 py-2 text-slate-500">CANT PRODUCTOS</td>
-        <td class="whitespace-nowrap px-4 py-2 text-slate-500">TOTAL PEDIDO</td>
-        <td class="whitespace-nowrap px-4 py-2 text-slate-500">
-            <asp:DropDownList id="DropDownList2" CssClass="bg-amber-600 block w-9/12 rounded-md border border-slate-900 px-4 py-2 text-xs font-medium text-white shadow-sm focus-within:border-amber-700 focus-within:ring-1 focus-within:ring-amber-700" runat="server">
-            <asp:ListItem Enabled="true" Text= "Pendiente" Value= ""></asp:ListItem>
-            <asp:ListItem Text= "En progreso" Value= ""></asp:ListItem>
-                <asp:ListItem Text= "Completado" Value= ""></asp:ListItem>
-            </asp:DropDownList>
-        </td>
-        <td class="whitespace-nowrap px-4 py-2">
-          <a
-            href="#"
-            class="inline-block rounded bg-emerald-800 px-4 py-2 text-xs font-medium text-white hover:bg-emerald-900"
-          >
-            Ver
-          </a>
-
-            <a
-            href="#"
-            class="inline-block rounded bg-emerald-800 px-4 py-2 text-xs font-medium text-white hover:bg-emerald-900"
-          >
-            Editar
-          </a>
-
-            <a
-            href="#"
-            class="inline-block rounded bg-red-900 px-4 py-2 text-xs font-medium text-white hover:bg-red-950"
-          >
-            Eliminar
-          </a>
-        </td>
-      </tr>
+    <% } %>
     </tbody>
   </table>
+
+    
 </div>
+    <script src="../modal.js"></script>
 </asp:Content>

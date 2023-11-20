@@ -89,7 +89,7 @@ namespace tp_carrito_compras_equipo_20
                         }
                     }
 
-                    Session["articulos"] = articulos;
+                    Session[""] = articulos;
                 }
 
 

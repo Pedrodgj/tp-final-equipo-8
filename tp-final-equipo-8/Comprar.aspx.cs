@@ -118,6 +118,28 @@ namespace tp_carrito_compras_equipo_20
 
         protected void btnComprar_Click(object sender, EventArgs e)
         {
+            EmailService enviarEmail = new EmailService();
+
+            string html = $"<html lang=\"es\"><head>  <meta charset=\"UTF-8\"> <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">" +
+                $"<title>Correo Electrónico</title>" +
+                $"<style>  body {{font-family: Arial, sans-serif; background-color: #f4f4f4; margin: 0; padding: 0;}}" +
+                $".container {{width: 80%; margin: 0 auto; text-align: center; padding: 40px 0;}}" +
+                $"h1 {{color: #333333; margin-bottom: 20px;}} p {{color: #666666; margin-bottom: 10px;}} a{{color: #007BFF; text-decoration: none; font-weight: bold;}} a:hover {{ text-decoration: underline;}} </style> </head>" +
+                $"<body> <div class=\"container\">" +
+                $"<h1>Título del Correo</h1> <p>Esta es una descripción del contenido del correo electrónico.</p> <p>Puedes encontrar más información en el siguiente enlace:</p><a href=\"https://www.youtube.com/watch?v=ED-OaXOc6DY\">Enlace de Ejemplo</a>" +
+                $"</div></body></html>";
+            
+            try
+            {
+                enviarEmail.ArmarCorreo(usuario.Email, "Realizar Compra", html);
+                enviarEmail.enviarEmail();
+            }
+            catch (Exception ex)
+            {
+                Session["Msg_error"] = "No se ha podido enviar al correo el link de pago! Intente de nuevo o comuniquese con el administrador";
+                Response.Redirect("Comprar.aspx");
+                //throw ex;
+            }
             EstadoPedidoEnum nuevo = EstadoPedidoEnum.NUEVO;
             Compra compra = new Compra();
             int IdUsuario = usuario.Id;
@@ -129,7 +151,8 @@ namespace tp_carrito_compras_equipo_20
                 detalle.IdArticulo = art.Id;
                 detalle.Cantidad = art.Cantidad;
                 detalle.PrecioUnitario = art.Precio;
-                detalle.Total = (art.Precio * art.Cantidad) * ivaPorcentaje;
+                decimal ivaTotal = (art.Precio * art.Cantidad) * ivaPorcentaje;
+                detalle.Total = ivaTotal + (art.Precio * art.Cantidad);
                 detalleCompras.Add(detalle);
             }
             compra.IdUsuario = IdUsuario;
@@ -137,7 +160,7 @@ namespace tp_carrito_compras_equipo_20
             compra.Estado = nuevo.ToString();
             Compras.GrabarCompra(compra);
 
-            Response.Redirect("Perfil.aspx");
+            Response.Redirect("PedidoFinalizado.aspx");
         }
     }
 }

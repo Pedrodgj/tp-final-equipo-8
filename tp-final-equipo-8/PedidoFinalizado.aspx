@@ -4,6 +4,7 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
 
     <section>
+     
   <div class="mx-auto max-w-screen-xl px-4 py-8 sm:px-6 sm:py-12 lg:px-8">
     <div class="mx-auto max-w-3xl">
       <header class="text-center">
@@ -61,6 +62,12 @@
             </dl>
 
             
+             <div class="flex justify-between">
+                <h1 class="text-4xl font-bold mb-4">
+                    <asp:Literal ID="MensajeLiteral"  runat="server"></asp:Literal>
+                </h1>
+            </div>
+       
 
             <div class="flex justify-end">
               <a

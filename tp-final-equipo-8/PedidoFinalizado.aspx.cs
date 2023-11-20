@@ -7,6 +7,7 @@ using System.Web.UI.WebControls;
 using dominio;
 using Negocio;
 using System.Globalization;
+using System.Net.Mail;
 
 namespace tp_carrito_compras_equipo_20
 {
@@ -19,9 +20,17 @@ namespace tp_carrito_compras_equipo_20
         protected void Page_Load(object sender, EventArgs e)
         {
             var id = Request.QueryString["id"];
-            var delete = Request.QueryString["delete"];
-            var deleteAll = Request.QueryString["deleteAll"];
             bool primerArticulo;
+
+            Usuario usuario = (Usuario)Session["Usuario"];
+            if (usuario != null)
+            {
+                MensajeLiteral.Text = "Se ha enviado a su correo electrónico " + usuario.Email + " el link de pago.";
+            }
+            else
+            {
+                Response.Redirect("Default.aspx");
+            }
 
             articulos = (List<Articulo>)Session["articulos"];
             if (articulos == null)
@@ -75,8 +84,7 @@ namespace tp_carrito_compras_equipo_20
 
                 Session["articulos"] = articulos;
             }
-
-
+            
             decimal total = 0;
             foreach (var arti in articulos)
             {

@@ -8,34 +8,30 @@ namespace Negocio
 {
     public class Compras
     {
-        //public static List<Articulo> Listar()
-        //{
-        //    AccesoDatos acceso = new AccesoDatos();
-        //    List<Articulo> articulos = new List<Articulo>();
+        public static List<Compra> ListarCompras()
+        {
+            AccesoDatos acceso = new AccesoDatos();
 
-        //    var lector = acceso.Leer("SELECT a.Id, a.Codigo, a.Nombre, a.Descripcion, a.Precio, a.IdCategoria, c.Descripcion as Categoria, a.IdMarca, m.Descripcion as Marca FROM Articulos a LEFT OUTER JOIN Categorias c ON c.Id = a.IdCategoria LEFT OUTER JOIN Marcas m ON m.Id = a.IdMarca ORDER BY a.Id");
+            List<Compra> compras = new List<Compra>();
 
-        //    while (lector.Read())
-        //    {
-        //        Articulo aux = new Articulo
-        //        {
-        //            Id = (int)lector["Id"],
-        //            Codigo = (string)lector["Codigo"],
-        //            Nombre = (string)lector["Nombre"],
-        //            Precio = (decimal)lector["Precio"],
-        //            Descripcion = (string)lector["Descripcion"],
-        //            IdCategoria = lector["IdCategoria"] != DBNull.Value ? (int)lector["IdCategoria"] : -1,
-        //            Categoria = lector["Categoria"] != DBNull.Value ? (string)lector["Categoria"] : "",
-        //            Marca = lector["Marca"] != DBNull.Value ? (string)lector["Marca"] : "",
-        //            IdMarca = lector["IdMarca"] != DBNull.Value ? (int)lector["IdMarca"] : -1,
-        //            Imagenes = Imagenes.ByArticuloId((int)lector["Id"]),
-        //        };
+            var lector = acceso.Leer("SELECT * FROM Compras");
 
-        //        articulos.Add(aux);
-        //    }
+            while (lector.Read())
+            {
+                Compra aux = new Compra
+                {
+                    Id = (int)lector["Id"],
+                    IdUsuario = (int)lector["IdUsuario"],
+                    FechaCompra = (DateTime)lector["FechaCompra"],
+                    Estado = (string)lector["Estado"],
+                    CodigoSeguimiento = (string)lector["CodigoSeguimiento"]
+                }; 
 
-        //    return articulos;
-        //}
+                compras.Add(aux);
+            }
+
+            return compras;
+        }
 
 
 
@@ -78,6 +74,31 @@ namespace Negocio
             }
 
             return compras;
+        }
+
+        public static List<DetalleCompra> ListarDetalles()
+        {
+            AccesoDatos acceso = new AccesoDatos();
+
+            List<DetalleCompra> detalles = new List<DetalleCompra>();
+
+            var lector = acceso.Leer("SELECT * FROM DetalleCompra");
+
+            while (lector.Read())
+            {
+                DetalleCompra aux = new DetalleCompra
+                {
+                    IdCompra = (int)lector["IdCompra"],
+                    IdArticulo = (int)lector["IdArticulo"],
+                    Cantidad = (int)lector["Cantidad"],
+                    PrecioUnitario = (decimal)lector["PrecioUnitario"],
+                    Total = (decimal)lector["Total"]
+                };
+
+                detalles.Add(aux);
+            }
+
+            return detalles;
         }
 
         public static List<DetalleCompra> ListarDetallePorId(int IdCompra)

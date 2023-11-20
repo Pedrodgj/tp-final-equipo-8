@@ -27,6 +27,9 @@ namespace tp_carrito_compras_equipo_20
                     }
                     else
                     {
+                        if (Session["articulos"] != null) {
+                            Response.Redirect("Comprar.aspx");
+                        }
                         Response.Redirect("/Perfil.aspx");
                     }
                 }
