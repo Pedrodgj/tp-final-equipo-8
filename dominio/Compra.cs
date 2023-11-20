@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Security.Policy;
 
 namespace dominio
 {
@@ -10,6 +11,7 @@ namespace dominio
         public DateTime FechaCompra { get; set; }
         public string CodigoSeguimiento { get; set; }
 
+        public string Estado {  get; set; }
         public List<DetalleCompra> Detalles { get; set; }
    
     }

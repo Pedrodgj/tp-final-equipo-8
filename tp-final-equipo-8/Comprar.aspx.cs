@@ -118,6 +118,7 @@ namespace tp_carrito_compras_equipo_20
 
         protected void btnComprar_Click(object sender, EventArgs e)
         {
+            EstadoPedidoEnum nuevo = EstadoPedidoEnum.NUEVO;
             Compra compra = new Compra();
             int IdUsuario = usuario.Id;
             List<DetalleCompra> detalleCompras = new List<DetalleCompra>();
@@ -133,6 +134,7 @@ namespace tp_carrito_compras_equipo_20
             }
             compra.IdUsuario = IdUsuario;
             compra.Detalles = detalleCompras;
+            compra.Estado = nuevo.ToString();
             Compras.GrabarCompra(compra);
 
             Response.Redirect("Perfil.aspx");

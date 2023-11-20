@@ -44,7 +44,7 @@ namespace Negocio
             AccesoDatos acceso = new AccesoDatos();
 
             List<string> query = new List<string> {
-                string.Format("INSERT INTO Compras (IdUsuario) VALUES ( " + compras.IdUsuario + ")")
+                string.Format("INSERT INTO Compras (IdUsuario, CodigoSeguimiento, Estado) VALUES ('{0}', '{1}', '{2}')", compras.IdUsuario, ' ', compras.Estado)
             };
 
             foreach (var detalle in compras.Detalles)
@@ -61,7 +61,7 @@ namespace Negocio
 
             List<Compra> compras = new List<Compra>();
 
-            var lector = acceso.Leer("SELECT co.Id as IdCompra, co.FechaCompra, co.IdUsuario FROM Compras as co WHERE co.IdUsuario = " + IdUsuario + " ORDER BY co.FechaCompra");
+            var lector = acceso.Leer("SELECT co.Id as IdCompra, co.FechaCompra, co.IdUsuario, co.Estado, co.CodigoSeguimiento FROM Compras as co WHERE co.IdUsuario = " + IdUsuario + " ORDER BY co.FechaCompra");
 
             while (lector.Read())
             {
@@ -70,6 +70,8 @@ namespace Negocio
                     Id = (int)lector["IdCompra"],
                     IdUsuario = (int)lector["IdUsuario"],
                     FechaCompra = (DateTime)lector["FechaCompra"],
+                    Estado = (string)lector["Estado"],
+                    CodigoSeguimiento = (string)lector["CodigoSeguimiento"]
                 };
 
                 compras.Add(aux);
