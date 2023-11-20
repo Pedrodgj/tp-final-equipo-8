@@ -78,7 +78,8 @@ go
 CREATE TABLE Compras (
   Id INT IDENTITY(1,1) NOT NULL,
   IdUsuario INT NOT NULL,
-  FechaCompra DATE NOT NULL,
+  FechaCompra DATETIME DEFAULT GETDATE(),
+  CodigoSeguimiento VARCHAR(100) NULL,
   CONSTRAINT PK_Compras PRIMARY KEY (Id),
   CONSTRAINT FK_Usuario_Compra FOREIGN KEY (IdUsuario) REFERENCES Usuario(Id)
 );
@@ -89,8 +90,7 @@ CREATE TABLE DetalleCompra (
   Cantidad INT NOT NULL,
   PrecioUnitario MONEY NOT NULL,
   Total MONEY NOT NULL,
-  CONSTRAINT PK_DetalleCompra PRIMARY KEY (IdCompra, IdArticulo),
   CONSTRAINT FK_Compra FOREIGN KEY (IdCompra) REFERENCES Compras(Id),
-  CONSTRAINT FK_Articulo_DetalleCompra FOREIGN KEY (IdArticulo) REFERENCES Articulos(Id)
+  CONSTRAINT FK_Articulo FOREIGN KEY (IdArticulo) REFERENCES Articulos(Id)
 );
 

@@ -15,13 +15,13 @@ namespace tp_carrito_compras_equipo_20
     {
 
         /// <summary>
-        /// Control txtNombre.
+        /// Control btnCrearUsuario.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtNombre;
+        protected global::System.Web.UI.WebControls.Button btnCrearUsuario;
 
         /// <summary>
         /// Control txtProvincia.
@@ -121,5 +121,14 @@ namespace tp_carrito_compras_equipo_20
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lblTotalPagar;
+
+        /// <summary>
+        /// Control btnComprar.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnComprar;
     }
 }

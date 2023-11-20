@@ -25,85 +25,88 @@ namespace tp_carrito_compras_equipo_20
             var deleteAll = Request.QueryString["deleteAll"];
             bool primerArticulo;
 
-            if (delete == "true")
-            {
-                eliminarProducto(id);
-                Response.Redirect("Carrito.aspx");
-                return;
-            }
-
-            if(deleteAll == "true")
-            {
-                eliminarTodoProducto(id);
-                Response.Redirect("Carrito.aspx");
-                return;
-            }
-
-            articulos = (List<Articulo>)Session["articulos"];
-            if(articulos == null)
-            {
-                primerArticulo = true;
-            } else
-            {
-                primerArticulo = false;
-            }
-            if (primerArticulo == true)
-            {
-                articulos = new List<Articulo>();
-                if (id != null)
+            //if (this.IsPostBack) { 
+            
+                if (delete == "true")
                 {
-                    Articulo art = Articulos.Ver(id);
-                    art.Cantidad = art.Cantidad + 1;
-                    articulos.Add(art);
-                    Session["articulos"] = articulos;
-                    //return;
+                    eliminarProducto(id);
+                    Response.Redirect("Carrito.aspx");
+                    return;
                 }
-            } else
-            {
-                List<Articulo> articulosTotal = Articulos.Listar();
 
-                if (id != null)
+                if(deleteAll == "true")
                 {
-                    bool exist = false;
-                    foreach (var art in articulosTotal)
-                    {
-                        if (id == art.Id.ToString())
-                        {
-                            foreach (var articu in articulos)
-                            {
-                                if (art.Id == articu.Id)
-                                {
-                                    articu.Cantidad = articu.Cantidad + 1;
-                                    exist = true;
-                                }
-                            }
+                    eliminarTodoProducto(id);
+                    Response.Redirect("Carrito.aspx");
+                    return;
+                }
 
-                            if (exist != true)
+                articulos = (List<Articulo>)Session["articulos"];
+                if(articulos == null)
+                {
+                    primerArticulo = true;
+                } else
+                {
+                    primerArticulo = false;
+                }
+                if (primerArticulo == true)
+                {
+                    articulos = new List<Articulo>();
+                    if (id != null)
+                    {
+                        Articulo art = Articulos.Ver(id);
+                        art.Cantidad = art.Cantidad + 1;
+                        articulos.Add(art);
+                        Session["articulos"] = articulos;
+                        //return;
+                    }
+                } else
+                {
+                    List<Articulo> articulosTotal = Articulos.Listar();
+
+                    if (id != null)
+                    {
+                        bool exist = false;
+                        foreach (var art in articulosTotal)
+                        {
+                            if (id == art.Id.ToString())
                             {
-                                art.Cantidad = art.Cantidad + 1;
-                                articulos.Add(art);
+                                foreach (var articu in articulos)
+                                {
+                                    if (art.Id == articu.Id)
+                                    {
+                                        articu.Cantidad = articu.Cantidad + 1;
+                                        exist = true;
+                                    }
+                                }
+
+                                if (exist != true)
+                                {
+                                    art.Cantidad = art.Cantidad + 1;
+                                    articulos.Add(art);
+                                }
                             }
                         }
                     }
+
+                    Session["articulos"] = articulos;
                 }
 
-                Session["articulos"] = articulos;
-            }
 
-
-            decimal total = 0;
-            foreach (var arti in articulos)
-            {
-                total += (arti.Precio * arti.Cantidad);
-                cantidadArticulos += arti.Cantidad;
-            }
+                decimal total = 0;
+                foreach (var arti in articulos)
+                {
+                    total += (arti.Precio * arti.Cantidad);
+                    cantidadArticulos += arti.Cantidad;
+                }
             
-            lblTotal.Text = string.Format(pesos, "{0:C}", total);
-            decimal totalConIva = total * ivaPorcentaje;
-            lblIva.Text = string.Format(pesos, "{0:C}", totalConIva);
-            decimal totalAPagar = total + totalConIva;
-            lblTotalPagar.Text = string.Format(pesos, "{0:C}", totalAPagar);
-            Session["cantArticulos"] = cantidadArticulos;
+                lblTotal.Text = string.Format(pesos, "{0:C}", total);
+                decimal totalConIva = total * ivaPorcentaje;
+                lblIva.Text = string.Format(pesos, "{0:C}", totalConIva);
+                decimal totalAPagar = total + totalConIva;
+                lblTotalPagar.Text = string.Format(pesos, "{0:C}", totalAPagar);
+                Session["cantArticulos"] = cantidadArticulos;
+            //}
         }
 
         private void eliminarTodoProducto(string id)

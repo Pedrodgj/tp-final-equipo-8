@@ -10,6 +10,7 @@ namespace tp_carrito_compras_equipo_20
             if (this.IsPostBack)
             {
                 Session["ID_Usuario"] = null;
+                Session["Usuario"] = null;
                 string mail = Request.Form["mail"];
                 string password = Request.Form["password"];
 
@@ -33,6 +34,7 @@ namespace tp_carrito_compras_equipo_20
             }
             else
             {
+               
                 if (Session["ID_Usuario"] != null)
                 {
                     Response.Redirect("/Perfil.aspx");
