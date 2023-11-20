@@ -11,7 +11,7 @@ namespace tp_carrito_compras_equipo_20.admin
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            lblCodigo.Text = "Hola como estas";
         }
     }
 }

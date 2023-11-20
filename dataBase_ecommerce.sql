@@ -93,5 +93,6 @@ CREATE TABLE DetalleCompra (
   CONSTRAINT FK_Compra FOREIGN KEY (IdCompra) REFERENCES Compras(Id),
   CONSTRAINT FK_Articulo FOREIGN KEY (IdArticulo) REFERENCES Articulos(Id)
 );
-
-SELECT * FROM Usuario
+go   
+ALTER TABLE Compras
+ADD Estado VARCHAR(50) NULL

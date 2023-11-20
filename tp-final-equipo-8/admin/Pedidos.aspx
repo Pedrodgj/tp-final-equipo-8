@@ -69,8 +69,11 @@
 
       <tr>
         <td class="whitespace-nowrap px-4 py-2 font-medium text-slate-500">
-          CODIGO PEDIDO
+          <%--<asp:TextBox ID="txtCodigoPedido" Text="CODIGO PEDIDO" runat="server"  style="border: solid rgba(204, 204, 204, 0.5); padding: 2px; color: #333; border-radius: 5px;" ></asp:TextBox>--%>
+          <asp:Label ID="lblCodigo" runat="server" CssClass="whitespace-nowrap px-4 py-2 font-medium text-slate-500 customLabel" Text="Codigo"></asp:Label>
+
         </td>
+        
         <td class="whitespace-nowrap px-4 py-2 text-slate-500">NOMBRE CLIENTE</td>
         <td class="whitespace-nowrap px-4 py-2 text-slate-500">CANT PRODUCTOS</td>
         <td class="whitespace-nowrap px-4 py-2 text-slate-500">TOTAL PEDIDO</td>
