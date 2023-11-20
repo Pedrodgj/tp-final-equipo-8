@@ -67,7 +67,7 @@ namespace Negocio
             {
                 Compra aux = new Compra
                 {
-                    Id = (int)lector["Id"],
+                    Id = (int)lector["IdCompra"],
                     IdUsuario = (int)lector["IdUsuario"],
                     FechaCompra = (DateTime)lector["FechaCompra"],
                 };

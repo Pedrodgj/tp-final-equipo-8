@@ -14,20 +14,20 @@ namespace tp_carrito_compras_equipo_20
         public Domicilio domicilio = new Domicilio();
         protected void Page_Load(object sender, EventArgs e)
         {
+            Usuario usuario = null;
+            List<Compra> compras = new List<Compra>();
             if (Session["ID_Usuario"] == null)
             {
                 Response.Redirect("/InicioSesion.aspx");
             } else
             {
-                Usuario usuario = (Usuario)Session["Usuario"];
-                ListarCompras(usuario.Id);
+                usuario = (Usuario)Session["Usuario"];
+                compras = ListarCompras(usuario.Id);
             }
-
-            else
-            {
-                usuario = Usuarios.LeerPorId((int)Session["ID_Usuario"]);
-                domicilio = Domicilios.ListarPorId(usuario.Id);
-            }
+                
+                
+                domicilio = Domicilios.ListarPorId(usuario.IdDomicilio);
+     
 
             if (this.IsPostBack)
             {

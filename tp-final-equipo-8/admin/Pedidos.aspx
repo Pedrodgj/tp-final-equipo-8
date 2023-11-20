@@ -36,9 +36,11 @@
         <td class="whitespace-nowrap px-4 py-2 text-slate-500">TOTAL PEDIDO</td>
         <td class="whitespace-nowrap px-4 py-2 text-slate-500">
             <asp:DropDownList id="marca" CssClass="bg-amber-600 block w-9/12 rounded-md border border-slate-900 px-4 py-2 text-xs font-medium text-white shadow-sm focus-within:border-amber-700 focus-within:ring-1 focus-within:ring-amber-700" runat="server">
-            <asp:ListItem Enabled="true" Text= "Pendiente" Value= ""></asp:ListItem>
+            <asp:ListItem Enabled="true" Text= "Nuevo" Value= ""></asp:ListItem>
+            <asp:ListItem Text= "Aceptado" Value= ""></asp:ListItem>
             <asp:ListItem Text= "En progreso" Value= ""></asp:ListItem>
-                <asp:ListItem Text= "Completado" Value= ""></asp:ListItem>
+            <asp:ListItem Text= "Cancelado" Value= ""></asp:ListItem>
+            <asp:ListItem Text= "Completado" Value= ""></asp:ListItem>
             </asp:DropDownList>
         </td>
         <td class="whitespace-nowrap px-4 py-2">
@@ -46,21 +48,21 @@
             href="#"
             class="inline-block rounded bg-emerald-800 px-4 py-2 text-xs font-medium text-white hover:bg-emerald-900"
           >
-            Ver
+            Informar Estado
           </a>
 
-            <a
+            <%--<a
             href="#"
             class="inline-block rounded bg-emerald-800 px-4 py-2 text-xs font-medium text-white hover:bg-emerald-900"
           >
             Editar
-          </a>
+          </a>--%>
 
             <a
             href="#"
             class="inline-block rounded bg-red-900 px-4 py-2 text-xs font-medium text-white hover:bg-red-950"
           >
-            Eliminar
+            Cancelar Pedido
           </a>
         </td>
       </tr>
