@@ -4,6 +4,8 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using Negocio;
+using dominio;
 
 namespace tp_carrito_compras_equipo_20.admin
 {

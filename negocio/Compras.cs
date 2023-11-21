@@ -76,6 +76,25 @@ namespace Negocio
             return compras;
         }
 
+        public static Compra ListarCompraPorId(int IdCompra)
+        {
+            AccesoDatos acceso = new AccesoDatos();
+
+            var lector = acceso.Leer("SELECT * FROM Compras as dc WHERE dc.Id = " + IdCompra + "");
+            if (!lector.Read()) return null;
+
+            Compra detalles = new Compra
+            {
+                Id = (int)lector["Id"],
+                IdUsuario = (int)lector["IdUsuario"],
+                FechaCompra = (DateTime)lector["FechaCompra"],
+                CodigoSeguimiento = (string)lector["CodigoSeguimiento"],
+                Estado = (string)lector["Estado"]
+            };
+
+            return detalles;
+        }
+
         public static List<DetalleCompra> ListarDetalles()
         {
             AccesoDatos acceso = new AccesoDatos();

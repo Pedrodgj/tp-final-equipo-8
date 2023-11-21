@@ -186,7 +186,7 @@
 </div>
 
   </div>
-        <div class="rounded-lg col-span-4 text-slate-300">
+        <div class="rounded-lg col-span-4 text-slate-300 px-4 py-4">
             <asp:ContentPlaceHolder ID="nestedContent" runat="server">
             </asp:ContentPlaceHolder>
             </div>

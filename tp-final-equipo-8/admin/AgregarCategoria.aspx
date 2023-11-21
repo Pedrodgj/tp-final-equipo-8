@@ -40,6 +40,12 @@
     </div>
 
     <button class="inline-block shrink-0 rounded-md border border-emerald-700 bg-emerald-800 px-12 py-3 mt-5 text-sm font-medium text-white transition hover:bg-slate-800 hover:text-slate-400 focus:outline-none focus:ring active:text-slate-500">
-                Agregar
+                <% if (id > 0)
+        { %> 
+    Editar
+    <% }
+        else { %> 
+    Agregar
+    <% }%>
             </button>
 </asp:Content>

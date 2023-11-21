@@ -12,10 +12,11 @@ namespace tp_carrito_compras_equipo_20
     {
         public Usuario usuario = new Usuario();
         public Domicilio domicilio = new Domicilio();
+        public List<Compra> compras = new List<Compra>();
         protected void Page_Load(object sender, EventArgs e)
         {
             Usuario usuario = null;
-            List<Compra> compras = new List<Compra>();
+            
             if (Session["ID_Usuario"] == null)
             {
                 Response.Redirect("/InicioSesion.aspx");

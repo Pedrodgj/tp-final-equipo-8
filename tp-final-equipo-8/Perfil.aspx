@@ -3,20 +3,16 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
 
-<section
-  class="relative"
->
+<section class="relative">
   <div>
-    <main
-      class="flex items-center justify-center px-8 py-8 sm:px-12 lg:col-span-7 lg:px-16 lg:py-12 xl:col-span-6"
-    >
-      <div class="max-w-xl lg:max-w-3xl">
+    <main class="flex items-center justify-center px-8 py-8 sm:px-12 lg:col-span-7 lg:px-16 lg:py-12 xl:col-span-6">
+      <div class="w-9/12">
 
           <h2 class="mt-6 text-2xl font-bold text-white sm:text-3xl md:text-4xl pb-3">
           Perfil de Usuario
         </h2>
 
-          <div class="max-w-2xl mx-auto">
+          <div class="mx-auto w-full">
     
     <div class="border-b border-gray-200 dark:border-gray-700 mb-4">
         <ul class="flex flex-wrap -mb-px" id="myTab" data-tabs-toggle="#myTabContent" role="tablist">
@@ -39,10 +35,45 @@
             <p class="text-slate-400 text-sm">pestaña general</p>
         </div>
         <div class="p-4 rounded-lg bg-slate-900" id="pedidos" role="tabpanel" aria-labelledby="pedidos-tab">
-            <p class="text-slate-400 text-sm">pestaña de pedidos</p>
+            <p class="text-slate-400 text-sm">
+                <table class="min-w-full divide-y-2 divide-slate-700 bg-slate-900 text-sm">
+                    <thead class="ltr:text-left rtl:text-right">
+                        <tr>
+                            <th class="whitespace-nowrap px-4 py-2 font-medium text-slate-400">
+                                Pedido #
+                            </th>
+                            <th class="whitespace-nowrap px-4 py-2 font-medium text-slate-400">
+                                Fecha de compra
+                            </th>
+                            <th class="whitespace-nowrap px-4 py-2 font-medium text-slate-400">
+                                Estado
+                            </th>
+                            <th class="px-4 py-2"></th>
+                        </tr>
+                    </thead>
+
+                    <tbody class="divide-y divide-slate-600">
+                        <% foreach (var compra in compras)
+                            { %>
+                        <tr>
+                            <td class="whitespace-nowrap px-4 py-2 font-medium text-slate-500">
+                                <%: compra.Id %>
+                            </td>
+                            <td class="whitespace-nowrap px-4 py-2 text-slate-500"><%: compra.FechaCompra.ToString() %></td>
+                            <td class="whitespace-wrap px-4 py-2 text-slate-500 min-w-[12rem] max-w-[20rem]"><%: compra.Estado %></td>
+                            <td class="whitespace-nowrap px-4 py-2">
+                                <a href="VerCompra.aspx?id=<%: compra.Id %>" class="inline-block rounded bg-emerald-800 px-4 py-2 text-xs font-medium text-white hover:bg-emerald-900">
+                                    Ver
+                                </a>
+                            </td>
+                      </tr>
+                        <%} %>
+                    </tbody>
+                </table>
+            </p>
         </div>
         <div class="p-4 rounded-lg bg-slate-900 hidden" id="domicilio" role="tabpanel" aria-labelledby="domicilio-tab">
-            <p class="text-slate-400 text-sm">
+            <p class="text-slate-400 text-sm text-center flex items-center">
 
                 <div class="grid grid-cols-1 gap-6 mt-4 sm:grid-cols-2 w-max">
                     <div>
