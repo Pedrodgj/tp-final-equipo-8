@@ -59,7 +59,21 @@ namespace Negocio
             }
         }
 
-        
+        public int EjecutarConID(string consulta)
+        {
+            try
+            {
+                Preparar(consulta);
+                return (int)cmd.ExecuteScalar();
+
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+
         public int Ejecutar(List<string> consultas)
         {
             try

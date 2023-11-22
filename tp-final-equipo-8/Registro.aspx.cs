@@ -52,8 +52,8 @@ namespace tp_carrito_compras_equipo_20
                     FechaNacimiento = _fecha_nacimiento,
                     Telefono = _telefono,
                     IdTipoUsuario = 2, // Cliente
-                    IdDomicilio = 2 // Por ahora a cara de perro una ya creada con anterioridad
-                });
+                    IdDomicilio = (int)Domicilios.GrabarInicial() // Por ahora a cara de perro una ya creada con anterioridad
+            });
 
                 if (!res)
                 {
