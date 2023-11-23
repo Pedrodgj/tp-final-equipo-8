@@ -12,8 +12,8 @@ namespace Negocio
 
         public AccesoDatos()
         {
-            conn = new SqlConnection("Server=.\\SQLExpress;Database=TP_ECOMMERCE;Trusted_Connection=True;");
-            //conn = new SqlConnection("Server=.;Database=TP_ECOMMERCE;Trusted_Connection=True;");
+            //conn = new SqlConnection("Server=.\\SQLExpress;Database=TP_ECOMMERCE;Trusted_Connection=True;");
+            conn = new SqlConnection("Server=.;Database=TP_ECOMMERCE;Trusted_Connection=True;");
             cmd = new SqlCommand();
             cmd.CommandType = System.Data.CommandType.Text;   
         }
@@ -32,9 +32,10 @@ namespace Negocio
                 {
                     throw;
                 }
-                catch (Exception)
+                catch (Exception ex)
                 {
-                    throw;
+                    //Session["Msg_error"] = "No se ha podido guardar los cambios. Intente de nuevo";
+                    throw ex;
                 }
             }
         }

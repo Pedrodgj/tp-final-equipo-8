@@ -144,5 +144,24 @@ namespace Negocio
 
             return detalles;
         }
+
+        public static bool validarExisteCodigoSeguimiento(string codigoId)
+        {
+            AccesoDatos acceso = new AccesoDatos();
+
+            var lector = acceso.Leer("SELECT * FROM Compras as dc WHERE dc.CodigoSeguimiento = '" + codigoId + "'");
+
+            bool validado = !lector.Read();
+            return validado;
+        }
+
+        public static bool UpdateCompra(Compra compra)
+        {
+            AccesoDatos acceso = new AccesoDatos();
+
+            string query = string.Format("UPDATE Compras SET CodigoSeguimiento = '" + compra.CodigoSeguimiento + "', Estado = '" + compra.Estado + "' WHERE Id = " + compra.Id + "");
+       
+            return acceso.Ejecutar(query) > 0;
+        }
     }    
 }

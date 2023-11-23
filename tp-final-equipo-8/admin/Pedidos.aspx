@@ -3,6 +3,20 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="nestedContent" runat="server">
         <h1 class="mt-6 text-2xl font-bold text-slate-300 sm:text-3xl md:text-4xl pb-3">Pedidos</h1>
+        <% if (Session["Msg_error"] != null)
+            { %>
+            <div class="bg-red-200 p-10 absolute top-2 right-2 text-white">
+                <%= Session["Msg_error"] %>
+                <% Session["Msg_error"] = null; %>
+            </div>
+        <%} %>
+        <% if (Session["Msg_ok"] != null)
+            { %>
+            <div class="bg-green-200 p-10 absolute top-2 right-2 text-black">
+                <%= Session["Msg_ok"] %>
+                <% Session["Msg_ok"] = null; %>
+            </div>
+        <%} %>
 <div class="overflow-x-auto">
   <table class="min-w-full divide-y-2 divide-slate-700 bg-slate-900 text-sm">
     <thead class="ltr:text-left rtl:text-right">
@@ -35,7 +49,7 @@
           { %>   
       <tr>
         <td class="whitespace-nowrap px-4 py-2 font-medium text-slate-500">
-          <asp:Label ID="lblCodigo" runat="server" CssClass="whitespace-nowrap px-4 py-2 font-medium text-slate-500" Text="Codigo"></asp:Label>
+          <%= com.CodigoSeguimiento == " " ? "No tiene" : com.CodigoSeguimiento %>
         </td>
         <td class="whitespace-nowrap px-4 py-2 text-slate-500"><%= com.Id %></td>
         <td class="whitespace-nowrap px-4 py-2 text-slate-500">
@@ -45,25 +59,24 @@
         </td>
         <% decimal totalPrecio = com.Detalles.Sum(prod => prod.Total); %>
         <td class="whitespace-nowrap px-4 py-2 text-slate-500"><%= string.Format(pesos, "{0:C}", totalPrecio) %>
-        <%--<td class="whitespace-nowrap px-4 py-2 text-slate-500">--%>
           <div class="modal hidden fixed top-0 left-0 w-full h-full bg-black bg-opacity-50 flex justify-center items-center myModal">
             <div class="bg-white p-8 rounded shadow-md">
                 <span class="block font-bold mb-4">Detalle Compra</span>
                 <table class="table-fixed">
-                    <thead>
+                    <thead class="ltr:text-left rtl:text-right">
                         <tr>
-                            <th>Articulo Id</th>
-                            <th>Cantidad</th>
-                            <th>Precio Unitario</th>
+                            <th class="whitespace-nowrap px-4 py-2 font-medium text-slate-400">Articulo Id</th>
+                            <th class="whitespace-nowrap px-4 py-2 font-medium text-slate-400">Cantidad</th>
+                            <th class="whitespace-nowrap px-4 py-2 font-medium text-slate-400">Total</th>
                         </tr>
                     </thead>
-                    <tbody>
+                    <tbody class="divide-y divide-slate-600">
                         <%foreach (var detalle in com.Detalles)
                             {%>
                                 <tr>
-                                    <td><%= detalle.IdArticulo %></td>
-                                    <td><%= detalle.Cantidad %></td>
-                                    <td><%= string.Format(pesos, "{0:C}", detalle.PrecioUnitario) %></td>
+                                    <td class="whitespace-wrap px-4 py-2 text-slate-500 min-w-[12rem] max-w-[20rem] text-center"><%= detalle.IdArticulo %></td>
+                                    <td class="whitespace-wrap px-4 py-2 text-slate-500 min-w-[12rem] max-w-[20rem] text-center"><%= detalle.Cantidad %></td>
+                                    <td class="whitespace-wrap px-4 py-2 text-slate-500 min-w-[12rem] max-w-[20rem] text-center"><%= string.Format(pesos, "{0:C}", detalle.Total) %></td>
                                 </tr>
 
                            <% } %>
@@ -78,35 +91,31 @@
 
         <td class="whitespace-nowrap px-4 py-2 text-slate-500"><%= com.Estado %></td>
         <td class="whitespace-nowrap px-4 py-2 text-slate-500">
-            <asp:DropDownList id="marca" CssClass="bg-amber-600 block w-9/12 rounded-md border border-slate-900 px-4 py-2 text-xs font-medium text-white shadow-sm focus-within:border-amber-700 focus-within:ring-1 focus-within:ring-amber-700" runat="server">
-            <asp:ListItem Enabled="true" Text= "Nuevo" Value= ""></asp:ListItem>
-            <asp:ListItem Text= "Aceptado" Value= ""></asp:ListItem>
-            <asp:ListItem Text= "En progreso" Value= ""></asp:ListItem>
-            <asp:ListItem Text= "Cancelado" Value= ""></asp:ListItem>
-            <asp:ListItem Text= "Completado" Value= ""></asp:ListItem>
-            </asp:DropDownList>
+            <asp:DropDownList runat="server" CssClass="bg-amber-600 block w-9/12 rounded-md border border-slate-900 px-4 py-2 text-xs font-medium text-white shadow-sm focus-within:border-amber-700 focus-within:ring-1 focus-within:ring-amber-700">
+            <asp:ListItem id="ddlNuevo" Enabled="false" Text="Nuevo" Value= "NUEVO"></asp:ListItem>
+            <asp:ListItem id="ddlAceptado" Text="Aceptado" Value= "ACEPTADO"></asp:ListItem>
+            <asp:ListItem id="ddlEnProgreso" Text= "En progreso" Value= "EN_PROGRESO"></asp:ListItem>
+            <asp:ListItem id="ddlCompletado" Text= "Completado" Value= "COMPLETADO"></asp:ListItem>
+            </asp:DropDownList>           
         </td>
         <td class="whitespace-nowrap px-4 py-2">
-          <a
-            href="#"
-            class="inline-block rounded bg-emerald-800 px-4 py-2 text-xs font-medium text-white hover:bg-emerald-900"
-          >
-            Informar Estado
-          </a>
-
-            <a
-            href="#"
-            class="inline-block rounded bg-red-900 px-4 py-2 text-xs font-medium text-white hover:bg-red-950"
-          >
-            Cancelar Pedido
-          </a>
+          
+            <%if(com.Estado == "NUEVO" || com.Estado == "ACEPTADO" || com.Estado == "EN_PROGRESO") 
+                {%>
+                <a class="inline-block rounded bg-emerald-800 px-4 py-2 text-xs font-medium text-white hover:bg-emerald-900" 
+                    type ="button" href="Pedidos.aspx?id=<%: com.Id %>">Informar Estado</a>
+                <a class="inline-block rounded bg-red-900 px-4 py-2 text-xs font-medium text-white hover:bg-red-950" type ="button" href="Pedidos.aspx?id=<%: com.Id %>&delete=true">Cancelar Pedido</a>
+                <%} else {%>
+                      <label class="inline-block rounded bg-blue-900 px-4 py-2 text-xs font-medium ">Estado Final</label>
+                <%}%>
+        
         </td>
       </tr>
     <% } %>
     </tbody>
   </table>
-
-    
 </div>
+
     <script src="../modal.js"></script>
+    
 </asp:Content>
