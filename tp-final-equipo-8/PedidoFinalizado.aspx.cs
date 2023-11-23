@@ -98,6 +98,8 @@ namespace tp_carrito_compras_equipo_20
             decimal totalAPagar = total + totalConIva;
             lblTotalPagar.Text = string.Format(pesos, "{0:C}", totalAPagar);
             Session["cantArticulos"] = cantidadArticulos;
+
+            Session["articulos"] = null;
         }
     }
 }

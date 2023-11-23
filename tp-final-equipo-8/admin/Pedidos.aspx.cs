@@ -130,9 +130,9 @@ namespace tp_carrito_compras_equipo_20.admin
                     $"</div></body></html>";
                 try
                 {
-                    usuario.Email = "pedrodgj1497@gmail.com";
                     enviarEmail.ArmarCorreo(usuario.Email, "Codigo de seguimiento", html);
                     enviarEmail.enviarEmail();
+                    Session["Msg_ok"] = "Se ha realizado correctamente el envio del codigo de seguimiento al usuario";
                 }
                 catch (Exception ex)
                 {
@@ -141,7 +141,7 @@ namespace tp_carrito_compras_equipo_20.admin
                     //throw ex;
                 }
             }
-            Session["Msg_ok"] = "Se ha realizado correctamente el envio del codigo de seguimiento al usuario";
+            
             Negocio.Compras.UpdateCompra(compra);
         }
 
