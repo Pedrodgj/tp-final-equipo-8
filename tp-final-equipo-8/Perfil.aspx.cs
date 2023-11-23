@@ -44,14 +44,22 @@ namespace tp_carrito_compras_equipo_20
             tbTel.Text = usuario.Telefono;
             calFecha.SelectedDate = usuario.FechaNacimiento;
 
-            tbCalle.Text = domicilio.Calle;
-            tbCiudad.Text = domicilio.Ciudad;
-            tbDepartamento.Text = domicilio.Departamento;
-            tbNumero.Text = Convert.ToString(domicilio.Numero);
-            tbPiso.Text = Convert.ToString(domicilio.Piso);
-            tbProvincia.Text = domicilio.Provincia;
-            tbCP.Text = Convert.ToString(domicilio.CodigoPostal);
-            tbReferencia.Text = domicilio.Referencia;
+            if (!String.Equals(domicilio.Referencia, "callefalsa"))
+            {
+                lbDomicilio.Text = "Aca podes ver tu domicilio actual y editarlo";
+
+                tbCalle.Text = domicilio.Calle;
+                tbCiudad.Text = domicilio.Ciudad;
+                tbDepartamento.Text = domicilio.Departamento;
+                tbNumero.Text = Convert.ToString(domicilio.Numero);
+                tbPiso.Text = Convert.ToString(domicilio.Piso);
+                tbProvincia.Text = domicilio.Provincia;
+                tbCP.Text = Convert.ToString(domicilio.CodigoPostal);
+                tbReferencia.Text = domicilio.Referencia;
+            }
+
+            else lbDomicilio.Text = "Parece que no tenes ningun domicilio agendado! Agenda uno."; 
+            
 
         }
 
@@ -75,6 +83,20 @@ namespace tp_carrito_compras_equipo_20
             List<DetalleCompra> detalleCompra;
             detalleCompra = Compras.ListarDetallePorId(IdCompra);
             return detalleCompra;
+        }
+
+        protected void btnDomicilio_Click(object sender, EventArgs e)
+        {
+            domicilio.Calle = tbCalle.Text;
+            domicilio.Ciudad = tbCiudad.Text;
+            domicilio.Departamento = tbDepartamento.Text;
+            domicilio.Numero = Convert.ToInt32(tbNumero.Text);
+            domicilio.Piso = Convert.ToInt32(tbPiso.Text);
+            domicilio.Provincia = tbProvincia.Text;
+            domicilio.CodigoPostal = Convert.ToInt32(tbCP.Text);
+            domicilio.Referencia = tbReferencia.Text;
+
+            Domicilios.Editar(domicilio);
         }
     }
 }

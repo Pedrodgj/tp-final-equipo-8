@@ -15,6 +15,15 @@ namespace tp_carrito_compras_equipo_20
     {
 
         /// <summary>
+        /// lbDomicilio control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbDomicilio;
+
+        /// <summary>
         /// tbCalle control.
         /// </summary>
         /// <remarks>
@@ -85,6 +94,15 @@ namespace tp_carrito_compras_equipo_20
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox tbReferencia;
+
+        /// <summary>
+        /// btnDomicilio control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnDomicilio;
 
         /// <summary>
         /// tbNombres control.

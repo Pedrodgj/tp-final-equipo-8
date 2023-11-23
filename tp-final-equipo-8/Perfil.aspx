@@ -75,6 +75,8 @@
         <div class="p-4 rounded-lg bg-slate-900 hidden" id="domicilio" role="tabpanel" aria-labelledby="domicilio-tab">
             <p class="text-slate-400 text-sm text-center flex items-center">
 
+                <asp:Label ID="lbDomicilio" runat="server" CssClass="mb-2 text-sm font-medium text-slate-400" />
+
                 <div class="grid grid-cols-1 gap-6 mt-4 sm:grid-cols-2 w-max">
                     <div>
                         <label for="tbCalle" class="mb-2 text-sm font-medium text-slate-400">Calle</label>
@@ -140,9 +142,7 @@
                     </div>
                 </div>
 
-                <button class="inline-block shrink-0 rounded-md border border-emerald-700 bg-emerald-800 px-12 py-3 mt-5 text-sm font-medium text-white transition hover:bg-slate-800 hover:text-slate-400 focus:outline-none focus:ring active:text-slate-500">
-                Guardar
-            </button>
+                <asp:Button ID="btnDomicilio" OnClick="btnDomicilio_Click" runat="server" Text="Guardar" CssClass="inline-block shrink-0 rounded-md border border-emerald-700 bg-emerald-800 px-12 py-3 mt-5 text-sm font-medium text-white transition hover:bg-slate-800 hover:text-slate-400 focus:outline-none focus:ring active:text-slate-500" />
             </p>
         </div>
         <div class="p-4 rounded-lg bg-slate-900 hidden" id="informacion" role="tabpanel" aria-labelledby="informacion-tab">

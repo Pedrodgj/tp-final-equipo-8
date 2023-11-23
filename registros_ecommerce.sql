@@ -40,3 +40,12 @@ go
 INSERT INTO Imagenes (IdArticulo, ImagenUrl) VALUES (2, 'https://http2.mlstatic.com/D_NQ_NP_989909-MLA54404266985_032023-O.webp');
 
 INSERT INTO Imagenes (IdArticulo, ImagenUrl) VALUES (1, 'https://http2.mlstatic.com/D_NQ_NP_714995-MLA54486481781_032023-O.webp');
+
+-- Insertar Pedidos
+INSERT INTO Compras (IdUsuario, FechaCompra, CodigoSeguimiento, Estado) VALUES (2, '2023-11-01', 'J-8675309', 'Enviado');
+INSERT INTO Compras (IdUsuario, FechaCompra, CodigoSeguimiento, Estado) VALUES (2, '2023-11-20', 'M-2373304', 'Pendiente de envio');
+
+-- Insertar Detalle de compras
+INSERT INTO DetalleCompra (IdCompra, IdArticulo, Cantidad, PrecioUnitario, Total) VALUES (2, 1, 1, 19.99, 19.99);
+INSERT INTO DetalleCompra (IdCompra, IdArticulo, Cantidad, PrecioUnitario, Total) VALUES (2, 2, 1, 29.99, 29.99);
+INSERT INTO DetalleCompra (IdCompra, IdArticulo, Cantidad, PrecioUnitario, Total) VALUES (1, 2, 3, 29.99, 89.7);
