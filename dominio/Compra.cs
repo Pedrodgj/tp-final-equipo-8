@@ -12,6 +12,10 @@ namespace dominio
         public string CodigoSeguimiento { get; set; }
 
         public string Estado {  get; set; }
+
+        public decimal Total {  get; set; }
+
+        public bool Envio {  get; set; }
         public List<DetalleCompra> Detalles { get; set; }
    
     }

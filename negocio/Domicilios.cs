@@ -105,7 +105,7 @@ namespace Negocio
         {
             AccesoDatos acceso = new AccesoDatos();
 
-            string query = string.Format("UPDATE Domicilio SET Calle='{0}', Ciudad='{1}', Departamento='{2}', Numero='{3}', Piso='{4}', Provincia='{5}', CodigoPostal='{6}', Referencia='{7}'' WHERE Id='" + domicilio.Id + "'", domicilio.Calle, domicilio.Ciudad, domicilio.Departamento, domicilio.Numero, domicilio.Piso, domicilio.Provincia, domicilio.CodigoPostal, domicilio.Referencia);
+            string query = string.Format("UPDATE Domicilio SET Calle='{0}', Ciudad='{1}', Departamento='{2}', Numero='{3}', Piso='{4}', Provincia='{5}', CodigoPostal='{6}', Referencia='{7}' WHERE Id='" + domicilio.Id + "'", domicilio.Calle, domicilio.Ciudad, domicilio.Departamento, domicilio.Numero, domicilio.Piso, domicilio.Provincia, domicilio.CodigoPostal, domicilio.Referencia);
             return acceso.Ejecutar(query) > 0;
         }
         

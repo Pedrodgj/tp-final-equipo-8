@@ -154,7 +154,7 @@
                 <div class="col-span-6 space-y-2">
                     <div class="bg-slate-800 relative block overflow-hidden rounded-md border border-slate-900 px-3 pt-3 shadow-sm focus-within:border-slate-600 focus-within:ring-1 focus-within:ring-slate-600">
                         <asp:TextBox runat="server" ID="txtProvincia" 
-                            CssClass="text-slate-300 peer h-8 w-full border-none bg-transparent p-0 placeholder-transparent focus:border-transparent focus:outline-none focus:ring-0 sm:text-sm" placeholder="Nombre">
+                            CssClass="text-slate-300 peer h-8 w-full border-none bg-transparent p-0 placeholder-transparent focus:border-transparent focus:outline-none focus:ring-0 sm:text-sm" placeholder="Provincia">
                         </asp:TextBox>
                          <span class="absolute start-3 top-3 -translate-y-1/2 text-xs text-slate-400  transition-all peer-placeholder-shown:top-1/2 peer-placeholder-shown:text-sm peer-focus:top-3 peer-focus:text-xs">
                             Provincia
@@ -177,7 +177,7 @@
                         </span>
                     </div>
                     <div class="bg-slate-800 relative block overflow-hidden rounded-md border border-slate-900 px-3 pt-3 shadow-sm focus-within:border-slate-600 focus-within:ring-1 focus-within:ring-slate-600">
-                        <asp:TextBox runat="server" ID="txtNumero" 
+                        <asp:TextBox runat="server" ID="txtNumero" Text="Hola que hace" 
                             CssClass="text-slate-300 peer h-8 w-full border-none bg-transparent p-0 placeholder-transparent focus:border-transparent focus:outline-none focus:ring-0 sm:text-sm" placeholder="Nombre">
                         </asp:TextBox>
                          <span class="absolute start-3 top-3 -translate-y-1/2 text-xs text-slate-400  transition-all peer-placeholder-shown:top-1/2 peer-placeholder-shown:text-sm peer-focus:top-3 peer-focus:text-xs">
@@ -218,9 +218,14 @@
                     </div>
                  </div>
                 <div class="col-span-6 sm:flex sm:items-end sm:gap-4 space-y-2 pt-2 float-right">
-                    <button class="inline-block shrink-0 rounded-md border border-slate-700 bg-slate-800 px-12 py-3 text-sm font-medium text-white transition hover:bg-slate-800 hover:text-slate-400 focus:outline-none focus:ring active:text-slate-500">
+                    <%--<button class="inline-block shrink-0 rounded-md border border-slate-700 bg-slate-800 px-12 py-3 text-sm font-medium text-white transition hover:bg-slate-800 hover:text-slate-400 focus:outline-none focus:ring active:text-slate-500">
                         Editar Domicilio
-                    </button>
+                    </button>--%>
+                    <asp:Button ID="btnEditarDomicilio" runat="server" CssClass="inline-block shrink-0 rounded-md border border-slate-700 bg-slate-800 px-12 py-3 text-sm font-medium text-white transition hover:bg-slate-800 hover:text-slate-400 focus:outline-none focus:ring active:text-slate-500"
+                        Text="Editar Domicilio" OnClick="btnEditarDomicilio_Click" />
+                    <asp:Button ID="btnGuardarDomicilio" Visible="false" runat="server" CssClass="inline-block shrink-0 rounded-md border border-slate-700 bg-slate-800 px-12 py-3 text-sm font-medium text-white transition hover:bg-slate-800 hover:text-slate-400 focus:outline-none focus:ring active:text-slate-500"
+                        Text="Guardar Domicilio" OnClick="btnGuardarDomicilio_Click" />
+
                 </div>
                <%}%>
         </form>
@@ -234,7 +239,7 @@
               </svg>
             </button>
         <div id="accordion-collapse-body-1" class="panel" aria-labelledby="accordion-collapse-heading-1">
-            <div class="p-5 bg-slate-900">
+            <%--<div class="p-5 bg-slate-900">
                 <div class="flex items-center mb-4">
                     <input id="acordarEnvio" type="radio" value="" name="default-radio" class="w-4 h-4 text-slate-600 bg-slate-900 border-slate-300 focus:ring-slate-500 focus:ring-2">
                     <label for="acordarEnvio" class="ml-2 text-sm font-medium text-slate-300">Acordar con el vendedor</label>
@@ -245,9 +250,19 @@
                 </div>
                 <div class="col-span-6 sm:flex sm:items-end sm:gap-4 space-y-2 pt-2 float-right">
             </div>
+            </div>--%>
+            <div class="p-5 bg-slate-900">
+                <div class="flex items-center mb-4">
+                    <asp:RadioButton ID="acordarEnvio" runat="server" Text="Acordar con el vendedor" CssClass="ml-2 text-sm font-medium text-slate-300" 
+                        AutoPostBack="false" OnCheckedChanged="acordarEnvio_CheckedChanged" GroupName="grupoRadios"/>
+                </div>
+                <div class="flex items-center">
+                    <asp:RadioButton ID="retiroEnvio" runat="server" Text="Retirar por domicilio del vendedor" CssClass="ml-2 text-sm font-medium text-slate-300" Checked="True"
+                        AutoPostBack="false" OnCheckedChanged="acordarEnvio_CheckedChanged" GroupName="grupoRadios" />
+                </div>
+                <%--<div class="col-span-6 sm:flex sm:items-end sm:gap-4 space-y-2 pt-2 float-right">
+                </div>--%>
             </div>
-
-            
         </div>
 
          

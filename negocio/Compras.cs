@@ -24,7 +24,9 @@ namespace Negocio
                     IdUsuario = (int)lector["IdUsuario"],
                     FechaCompra = (DateTime)lector["FechaCompra"],
                     Estado = (string)lector["Estado"],
-                    CodigoSeguimiento = (string)lector["CodigoSeguimiento"]
+                    CodigoSeguimiento = (string)lector["CodigoSeguimiento"],
+                    Envio = (bool)lector["Envio"],
+                    Total = (decimal)lector["Total"]
                 }; 
 
                 compras.Add(aux);
@@ -40,7 +42,7 @@ namespace Negocio
             AccesoDatos acceso = new AccesoDatos();
 
             List<string> query = new List<string> {
-                string.Format("INSERT INTO Compras (IdUsuario, CodigoSeguimiento, Estado) VALUES ('{0}', '{1}', '{2}')", compras.IdUsuario, ' ', compras.Estado)
+                string.Format("INSERT INTO Compras (IdUsuario, CodigoSeguimiento, Estado, Envio, Total) VALUES ('{0}', '{1}', '{2}' ,'{3}', '{4}')", compras.IdUsuario, ' ', compras.Estado, compras.Envio, compras.Total)
             };
 
             foreach (var detalle in compras.Detalles)
@@ -57,7 +59,7 @@ namespace Negocio
 
             List<Compra> compras = new List<Compra>();
 
-            var lector = acceso.Leer("SELECT co.Id as IdCompra, co.FechaCompra, co.IdUsuario, co.Estado, co.CodigoSeguimiento FROM Compras as co WHERE co.IdUsuario = " + IdUsuario + " ORDER BY co.FechaCompra");
+            var lector = acceso.Leer("SELECT co.Id as IdCompra, co.FechaCompra, co.IdUsuario, co.Estado, co.CodigoSeguimiento, co.Envio, co.Total FROM Compras as co WHERE co.IdUsuario = " + IdUsuario + " ORDER BY co.FechaCompra");
 
             while (lector.Read())
             {
@@ -67,7 +69,9 @@ namespace Negocio
                     IdUsuario = (int)lector["IdUsuario"],
                     FechaCompra = (DateTime)lector["FechaCompra"],
                     Estado = (string)lector["Estado"],
-                    CodigoSeguimiento = (string)lector["CodigoSeguimiento"]
+                    CodigoSeguimiento = (string)lector["CodigoSeguimiento"],
+                    Envio = (bool)lector["Envio"],
+                    Total = (decimal)lector["Total"]
                 };
 
                 compras.Add(aux);
@@ -89,7 +93,9 @@ namespace Negocio
                 IdUsuario = (int)lector["IdUsuario"],
                 FechaCompra = (DateTime)lector["FechaCompra"],
                 CodigoSeguimiento = (string)lector["CodigoSeguimiento"],
-                Estado = (string)lector["Estado"]
+                Estado = (string)lector["Estado"],
+                Envio = (bool)lector["Envio"],
+                Total = (decimal)lector["Total"]
             };
 
             return detalles;

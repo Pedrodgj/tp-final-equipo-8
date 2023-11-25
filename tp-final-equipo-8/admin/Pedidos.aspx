@@ -27,10 +27,12 @@
         <th class="whitespace-nowrap px-4 py-2 font-medium text-slate-400">
           Id Compra #
         </th>
+         <th class="whitespace-nowrap px-4 py-2 font-medium text-slate-400">
+            Realizar Envio
+        </th>
         <th class="whitespace-nowrap px-4 py-2 font-medium text-slate-400">
           Detalles
-        </th>
-       
+        </th>       
         <th class="whitespace-nowrap px-4 py-2 font-medium text-slate-400">
           Total
         </th>
@@ -38,7 +40,7 @@
           Actual Estado
         </th>
         <th class="whitespace-nowrap px-4 py-2 font-medium text-slate-400">
-           Nuevo Estado
+           Siguiente Estado
          </th>
         <th class="px-4 py-2"></th>
       </tr>
@@ -52,13 +54,13 @@
           <%= com.CodigoSeguimiento == " " ? "No tiene" : com.CodigoSeguimiento %>
         </td>
         <td class="whitespace-nowrap px-4 py-2 text-slate-500"><%= com.Id %></td>
+        <td class="whitespace-nowrap px-4 py-2 text-slate-500"><%= com.Envio == false ? "Retiro por domicilio" : "Envio" %></td>
         <td class="whitespace-nowrap px-4 py-2 text-slate-500">
             <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded openModalBtn">
                 Abrir Modal
             </button>
         </td>
-        <% decimal totalPrecio = com.Detalles.Sum(prod => prod.Total); %>
-        <td class="whitespace-nowrap px-4 py-2 text-slate-500"><%= string.Format(pesos, "{0:C}", totalPrecio) %>
+        <td class="whitespace-nowrap px-4 py-2 text-slate-500"><%= string.Format(pesos, "{0:C}", com.Total) %>
           <div class="modal hidden fixed top-0 left-0 w-full h-full bg-black bg-opacity-50 flex justify-center items-center myModal">
             <div class="bg-white p-8 rounded shadow-md">
                 <span class="block font-bold mb-4">Detalle Compra</span>
@@ -91,12 +93,26 @@
 
         <td class="whitespace-nowrap px-4 py-2 text-slate-500"><%= com.Estado %></td>
         <td class="whitespace-nowrap px-4 py-2 text-slate-500">
-            <asp:DropDownList runat="server" CssClass="bg-amber-600 block w-9/12 rounded-md border border-slate-900 px-4 py-2 text-xs font-medium text-white shadow-sm focus-within:border-amber-700 focus-within:ring-1 focus-within:ring-amber-700">
-            <asp:ListItem id="ddlNuevo" Enabled="false" Text="Nuevo" Value= "NUEVO"></asp:ListItem>
+            <% switch (com.Estado)
+                {
+                    case "NUEVO": {%>
+                            <asp:Label runat="server" CssClass="bg-amber-600 block w-11/12 rounded-md border border-slate-900 px-4 py-2 text-xs font-medium text-white shadow-sm focus-within:border-amber-700 focus-within:ring-1 focus-within:ring-amber-700">Aceptado</asp:Label>
+                        <%} break;%>
+                    <% case "ACEPTADO": {%>
+                            <asp:Label runat="server" CssClass="bg-amber-600 block w-11/12 rounded-md border border-slate-900 px-4 py-2 text-xs font-medium text-white shadow-sm focus-within:border-amber-700 focus-within:ring-1 focus-within:ring-amber-700">En-Progreso</asp:Label>
+                        <%} break;%>
+                        <% case "EN_PROGRESO": {%>
+                            <asp:Label runat="server" CssClass="bg-amber-600 block w-11/12 rounded-md border border-slate-900 px-4 py-2 text-xs font-medium text-white shadow-sm focus-within:border-amber-700 focus-within:ring-1 focus-within:ring-amber-700">Completado</asp:Label>
+                        <%} break;%>
+                        <% default:%> 
+                        <asp:Label runat="server" CssClass="bg-amber-600 block w-11/12 rounded-md border border-slate-900 px-4 py-2 text-xs font-medium text-white shadow-sm focus-within:border-amber-700 focus-within:ring-1 focus-within:ring-amber-700">" "</asp:Label>
+                        <%break;
+                        } %>
+            <%--<asp:DropDownList runat="server" CssClass="bg-amber-600 block w-9/12 rounded-md border border-slate-900 px-4 py-2 text-xs font-medium text-white shadow-sm focus-within:border-amber-700 focus-within:ring-1 focus-within:ring-amber-700">
             <asp:ListItem id="ddlAceptado" Text="Aceptado" Value= "ACEPTADO"></asp:ListItem>
             <asp:ListItem id="ddlEnProgreso" Text= "En progreso" Value= "EN_PROGRESO"></asp:ListItem>
             <asp:ListItem id="ddlCompletado" Text= "Completado" Value= "COMPLETADO"></asp:ListItem>
-            </asp:DropDownList>           
+            </asp:DropDownList>  --%>         
         </td>
         <td class="whitespace-nowrap px-4 py-2">
           

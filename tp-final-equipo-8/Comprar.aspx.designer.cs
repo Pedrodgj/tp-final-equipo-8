@@ -96,6 +96,42 @@ namespace tp_carrito_compras_equipo_20
         protected global::System.Web.UI.WebControls.TextBox txtReferencia;
 
         /// <summary>
+        /// Control btnEditarDomicilio.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnEditarDomicilio;
+
+        /// <summary>
+        /// Control btnGuardarDomicilio.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnGuardarDomicilio;
+
+        /// <summary>
+        /// Control acordarEnvio.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RadioButton acordarEnvio;
+
+        /// <summary>
+        /// Control retiroEnvio.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RadioButton retiroEnvio;
+
+        /// <summary>
         /// Control lblTotal.
         /// </summary>
         /// <remarks>

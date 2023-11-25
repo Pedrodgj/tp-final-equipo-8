@@ -12,8 +12,8 @@ namespace Negocio
 
         public AccesoDatos()
         {
-            //conn = new SqlConnection("Server=.\\SQLExpress;Database=TP_ECOMMERCE;Trusted_Connection=True;");
-            conn = new SqlConnection("Server=.;Database=TP_ECOMMERCE;Trusted_Connection=True;");
+            conn = new SqlConnection("Server=.\\SQLExpress;Database=TP_ECOMMERCE;Trusted_Connection=True;");
+            //conn = new SqlConnection("Server=.;Database=TP_ECOMMERCE;Trusted_Connection=True;");
             cmd = new SqlCommand();
             cmd.CommandType = System.Data.CommandType.Text;   
         }

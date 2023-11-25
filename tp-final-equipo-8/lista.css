@@ -194,3 +194,12 @@ h3 {
         transition-delay: 0.05s;
     }
 
+/*.custom-radio input[type="radio"] {
+    width: 20px;
+    height: 20px;
+}
+
+.custom-radio label {
+    margin-left: 5px;
+}*/
+
