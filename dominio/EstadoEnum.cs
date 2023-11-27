@@ -12,8 +12,10 @@ namespace dominio
         NUEVO,
         [System.ComponentModel.Description("Estado Aceptado")]
         ACEPTADO,
-        [System.ComponentModel.Description("Estado En-progreso")]
-        EN_PROGRESO,
+        [System.ComponentModel.Description("Estado Enviado")]
+        ENVIADO,
+        [System.ComponentModel.Description("Estado Retirar")]
+        LISTO_PARA_RETIRAR,
         [System.ComponentModel.Description("Estado Cancelado")]
         CANCELADO,
         [System.ComponentModel.Description("Estado Completado")]

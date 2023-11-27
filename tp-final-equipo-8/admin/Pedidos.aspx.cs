@@ -17,7 +17,8 @@ namespace tp_carrito_compras_equipo_20.admin
         public CultureInfo pesos = new CultureInfo("es-AR");
         public EstadoPedidoEnum nuevo = EstadoPedidoEnum.NUEVO;
         public EstadoPedidoEnum aceptado = EstadoPedidoEnum.ACEPTADO;
-        public EstadoPedidoEnum en_progreso = EstadoPedidoEnum.EN_PROGRESO;
+        public EstadoPedidoEnum envio = EstadoPedidoEnum.ENVIADO;
+        public EstadoPedidoEnum retirar = EstadoPedidoEnum.LISTO_PARA_RETIRAR;
         public EstadoPedidoEnum cancelado = EstadoPedidoEnum.CANCELADO;
         public EstadoPedidoEnum completado = EstadoPedidoEnum.COMPLETADO;
         private string seleccionado;
@@ -32,28 +33,27 @@ namespace tp_carrito_compras_equipo_20.admin
             {
                 Response.Redirect("../Perfil.aspx");
             }
-            compras = ListarCompras();
-               
-
+            
             var id = Request.QueryString["id"];
             var delete = Request.QueryString["delete"];
+
+            if (id != null)
+            {
+                int idCompra = int.Parse(id);
+                informarEstado(idCompra);
+                Response.Redirect("Pedidos.aspx");
+                return;
+            } 
+            
             if(delete == "true")
             {
                 int idCompra = int.Parse(id);
                 cancelarPedido(idCompra);
                 Response.Redirect("Pedidos.aspx");
                 return;
-            }
+            }          
 
-            if (id != null)
-            {
-
-                int idCompra = int.Parse(id);
-                informarEstado(idCompra);
-                Response.Redirect("Pedidos.aspx");
-                return;
-            } 
-             
+            compras = ListarCompras();
         }
 
         private List<Compra> ListarCompras()
@@ -83,32 +83,39 @@ namespace tp_carrito_compras_equipo_20.admin
             Compra compra;
             bool envioCorreo = false;
             compra = Negocio.Compras.ListarCompraPorId(IdCompra);
-            //string valorSeleccionado = estados.SelectedValue;
+            string asunto;
                        
 
             switch (compra.Estado)
             {
                 case "NUEVO":
                     {
-                        while (compra.CodigoSeguimiento == " " && compra.Envio == true)
-                        {
-                            compra.CodigoSeguimiento = procesarEstadoAceptado();
-                        }
-                        envioCorreo = true;
                         compra.Estado = aceptado.ToString();
+                        envioCorreo = true;
                     }
                     break;
                 case "ACEPTADO":
                     {
-                        while (compra.CodigoSeguimiento == " " && compra.Envio == true)
+                        if(compra.Envio == false)
                         {
-                            compra.CodigoSeguimiento = procesarEstadoAceptado();
+                            compra.Estado = retirar.ToString();
+
+                        } else {
+                            while (compra.CodigoSeguimiento == " ")
+                            {
+                                compra.CodigoSeguimiento = procesarEstadoAceptado();
+                                compra.Estado = envio.ToString();
+                            }
                         }
                         envioCorreo = true;                       
-                        compra.Estado = en_progreso.ToString();
                     }
                     break;
-                case "EN_PROGRESO":
+                case "ENVIADO":
+                    {
+                        compra.Estado = completado.ToString();
+                    }
+                    break;
+                case "LISTO_PARA_RETIRAR":
                     {
                         compra.Estado = completado.ToString();
                     }
@@ -135,12 +142,20 @@ namespace tp_carrito_compras_equipo_20.admin
                     $"h1 {{color: #333333; margin-bottom: 20px;}} p {{color: #666666; margin-bottom: 10px;}} a{{color: #007BFF; text-decoration: none; font-weight: bold;}} a:hover {{ text-decoration: underline;}} </style> </head>" +
                     $"<body> <div class=\"container\">" +
                     $"<h1>Compra Aprobada</h1> <p>Muchas gracias por confiar en nosotros.</p> ";
-                if(compra.Envio == true)
+                if(compra.Estado == aceptado.ToString())
                 {
+                    asunto = "Compra Aprobada";
+                    html += $"<p> Tu compra ha sido Aceptada. En breve le estare llegando otro correo con mas informacion</p>" +
+                    $"</div></body></html>";
+                }
+                else if(compra.Envio == true)
+                {
+                    asunto = "Codigo Seguimiento";
                     html += $"<p> Tu compra ha sido aprobada. Te hacemos llegar el codigo de seguimiento {compra.CodigoSeguimiento} </p>" +
                     $"</div></body></html>";
                 } else
                 {
+                    asunto = "Direccion Retirar Pedido";
                     Domicilio currentDomicilio = Negocio.Domicilios.ListarPorId(usuario.IdDomicilio);
                     html += $"<p> Tu compra ha sido aprobada. Te hacemos llegar la direccion donde retirar tus productos </p>" +
                     $"<p> Provincia: {currentDomicilio.Provincia} </p>" +
@@ -154,7 +169,7 @@ namespace tp_carrito_compras_equipo_20.admin
                 }
                 try
                 {
-                    enviarEmail.ArmarCorreo(usuario.Email, "Codigo de seguimiento", html);
+                    enviarEmail.ArmarCorreo(usuario.Email, asunto, html);
                     enviarEmail.enviarEmail();
                     Session["Msg_ok"] = "Se ha realizado correctamente el envio del correo";
                 }

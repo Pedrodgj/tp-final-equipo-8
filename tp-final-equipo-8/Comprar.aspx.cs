@@ -186,9 +186,9 @@ namespace tp_carrito_compras_equipo_20
                     $"\r\n</div>\r\n</div>\r\n</form>";
             }
 
-            html += $"<div style=\"margin-bottom: 20px;\">\r\n    <div style=\"display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #ccc; padding: 8px 0;\">\r\n      <span style=\"font-weight: bold;\">Total:</span>\r\n      <span style=\"color: #000000;\">{total}</span>\r\n    </div>\r\n" +
-                $"<div style=\"display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #ccc; padding: 8px 0;\">\r\n      <span style=\"font-weight: bold;\">Total con IVA:</span>\r\n      <span style=\"color: #000000;\">{totalConIva}</span>\r\n    </div>\r\n" +
-                $"<div style=\"display: flex; justify-content: space-between; align-items: center; padding: 8px 0;\">\r\n      <span style=\"font-weight: bold;\">Total a pagar:</span>\r\n      <span style=\"color: #000000;\">{totalAPagar}</span>\r\n    </div>\r\n  </div>";
+            html += $"<div style=\"margin-bottom: 20px;\">\r\n    <div style=\"display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #ccc; padding: 8px 0;\">\r\n      <span style=\"font-weight: bold;\">Total:</span>\r\n      <span style=\"color: #000000;\"> {total}</span>\r\n    </div>\r\n" +
+                $"<div style=\"display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #ccc; padding: 8px 0;\">\r\n      <span style=\"font-weight: bold;\">IVA:</span>\r\n      <span style=\"color: #000000;\"> {totalConIva}</span>\r\n    </div>\r\n" +
+                $"<div style=\"display: flex; justify-content: space-between; align-items: center; padding: 8px 0;\">\r\n      <span style=\"font-weight: bold;\">Total a pagar:</span>\r\n      <span style=\"color: #000000;\"> {totalAPagar}</span>\r\n    </div>\r\n  </div>";
             
             try
             {

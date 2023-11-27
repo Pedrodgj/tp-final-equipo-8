@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Data;
+using System.Data.Common;
 
 namespace Negocio
 {
@@ -14,6 +15,7 @@ namespace Negocio
         {
             conn = new SqlConnection("Server=.\\SQLExpress;Database=TP_ECOMMERCE;Trusted_Connection=True;");
             //conn = new SqlConnection("Server=.;Database=TP_ECOMMERCE;Trusted_Connection=True;");
+
             cmd = new SqlCommand();
             cmd.CommandType = System.Data.CommandType.Text;   
         }

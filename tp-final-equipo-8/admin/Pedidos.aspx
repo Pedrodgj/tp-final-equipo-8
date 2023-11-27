@@ -67,7 +67,7 @@
                 <table class="table-fixed">
                     <thead class="ltr:text-left rtl:text-right">
                         <tr>
-                            <th class="whitespace-nowrap px-4 py-2 font-medium text-slate-400">Articulo Id</th>
+                            <th class="whitespace-nowrap px-4 py-2 font-medium text-slate-400">Articulo</th>
                             <th class="whitespace-nowrap px-4 py-2 font-medium text-slate-400">Cantidad</th>
                             <th class="whitespace-nowrap px-4 py-2 font-medium text-slate-400">Total</th>
                         </tr>
@@ -75,8 +75,9 @@
                     <tbody class="divide-y divide-slate-600">
                         <%foreach (var detalle in com.Detalles)
                             {%>
+                            <% dominio.Articulo art = Negocio.Articulos.Ver(detalle.IdArticulo.ToString()); %>
                                 <tr>
-                                    <td class="whitespace-wrap px-4 py-2 text-slate-500 min-w-[12rem] max-w-[20rem] text-center"><%= detalle.IdArticulo %></td>
+                                    <td class="whitespace-wrap px-4 py-2 text-slate-500 min-w-[12rem] max-w-[20rem] text-center"><%= art.Nombre %></td>
                                     <td class="whitespace-wrap px-4 py-2 text-slate-500 min-w-[12rem] max-w-[20rem] text-center"><%= detalle.Cantidad %></td>
                                     <td class="whitespace-wrap px-4 py-2 text-slate-500 min-w-[12rem] max-w-[20rem] text-center"><%= string.Format(pesos, "{0:C}", detalle.Total) %></td>
                                 </tr>
@@ -99,11 +100,18 @@
                             <asp:Label runat="server" CssClass="bg-amber-600 block w-11/12 rounded-md border border-slate-900 px-4 py-2 text-xs font-medium text-white shadow-sm focus-within:border-amber-700 focus-within:ring-1 focus-within:ring-amber-700">Aceptado</asp:Label>
                         <%} break;%>
                     <% case "ACEPTADO": {%>
-                            <asp:Label runat="server" CssClass="bg-amber-600 block w-11/12 rounded-md border border-slate-900 px-4 py-2 text-xs font-medium text-white shadow-sm focus-within:border-amber-700 focus-within:ring-1 focus-within:ring-amber-700">En-Progreso</asp:Label>
+                            <% if(com.Envio == true) {%>
+                                <asp:Label runat="server" CssClass="bg-amber-600 block w-11/12 rounded-md border border-slate-900 px-4 py-2 text-xs font-medium text-white shadow-sm focus-within:border-amber-700 focus-within:ring-1 focus-within:ring-amber-700">Realizar Envio</asp:Label>
+                            <%} else {%>
+                                <asp:Label runat="server" CssClass="bg-amber-600 block w-11/12 rounded-md border border-slate-900 px-4 py-2 text-xs font-medium text-white shadow-sm focus-within:border-amber-700 focus-within:ring-1 focus-within:ring-amber-700">Listo para Retirar</asp:Label>
+                                <%}%>
                         <%} break;%>
-                        <% case "EN_PROGRESO": {%>
+                        <% case "ENVIADO": {%>
                             <asp:Label runat="server" CssClass="bg-amber-600 block w-11/12 rounded-md border border-slate-900 px-4 py-2 text-xs font-medium text-white shadow-sm focus-within:border-amber-700 focus-within:ring-1 focus-within:ring-amber-700">Completado</asp:Label>
                         <%} break;%>
+                         <% case "LISTO_PARA_RETIRAR": {%>
+                        <asp:Label runat="server" CssClass="bg-amber-600 block w-11/12 rounded-md border border-slate-900 px-4 py-2 text-xs font-medium text-white shadow-sm focus-within:border-amber-700 focus-within:ring-1 focus-within:ring-amber-700">Completado</asp:Label>
+                    <%} break;%>
                         <% default:%> 
                         <asp:Label runat="server" CssClass="bg-amber-600 block w-11/12 rounded-md border border-slate-900 px-4 py-2 text-xs font-medium text-white shadow-sm focus-within:border-amber-700 focus-within:ring-1 focus-within:ring-amber-700">" "</asp:Label>
                         <%break;
@@ -116,7 +124,7 @@
         </td>
         <td class="whitespace-nowrap px-4 py-2">
           
-            <%if(com.Estado == "NUEVO" || com.Estado == "ACEPTADO" || com.Estado == "EN_PROGRESO") 
+            <%if(com.Estado == nuevo.ToString() || com.Estado == aceptado.ToString() || com.Estado == envio.ToString() || com.Estado == retirar.ToString()) 
                 {%>
                 <a class="inline-block rounded bg-emerald-800 px-4 py-2 text-xs font-medium text-white hover:bg-emerald-900" 
                     type ="button" href="Pedidos.aspx?id=<%: com.Id %>">Informar Estado</a>
