@@ -17,6 +17,24 @@
                 <% Session["Msg_ok"] = null; %>
             </div>
         <%} %>
+
+<div class="relative inline-block text-left flex flex-row space-x-4">
+    <asp:Label runat="server" ID="lblFiltrar" CssClass="whitespace-nowrap px-4 py-2 font-medium text-slate-400">Filtrar por</asp:Label>
+    <asp:DropDownList ID="ddlFiltro" runat="server" CssClass="inline-flex justify-center gap-x-1.5 rounded-md bg-white px-3 py-2 pr-8 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50 w-auto">
+        <%--<asp:ListItem CssClass="text-gray-700 block px-4 py-2 text-sm" id="ltUsuario" Text="Usuario"></asp:ListItem>--%>
+    </asp:DropDownList>
+    <asp:Label runat="server" ID="lblOpcion" CssClass="whitespace-nowrap px-4 py-2 font-medium text-slate-400"></asp:Label>
+    <asp:DropDownList ID="ddlOpcion" runat="server" CssClass="inline-flex justify-center gap-x-1.5 rounded-md bg-white px-3 py-2 pr-8 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50 w-auto">
+        
+    </asp:DropDownList>
+    <asp:Label runat="server" ID="lblEstado" CssClass="whitespace-nowrap px-4 py-2 font-medium text-slate-400">Estados</asp:Label>
+    <asp:DropDownList ID="ddlEstado" runat="server" CssClass="inline-flex justify-center gap-x-1.5 rounded-md bg-white px-3 py-2 pr-8 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50 w-auto">
+       
+    </asp:DropDownList>
+    <asp:Button ID="btnBuscar" runat="server" Text="Filtrar" CssClass="bg-blue-900 hover:bg-blue-700 font-semibold py-2 px-4 rounded-full" />
+</div>
+
+
 <div class="overflow-x-auto">
   <table class="min-w-full divide-y-2 divide-slate-700 bg-slate-900 text-sm">
     <thead class="ltr:text-left rtl:text-right">

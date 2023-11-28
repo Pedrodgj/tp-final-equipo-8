@@ -54,6 +54,11 @@ namespace tp_carrito_compras_equipo_20.admin
             }          
 
             compras = ListarCompras();
+            ddlOpcion.Visible = false;
+            ddlFiltro.Items.Add("");
+            ddlFiltro.Items.Add("Usuario");
+            ddlFiltro.Items.Add("Fecha");
+
         }
 
         private List<Compra> ListarCompras()
