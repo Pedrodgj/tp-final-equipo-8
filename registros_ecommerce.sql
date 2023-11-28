@@ -13,10 +13,10 @@ VALUES ('Calle 2', 'Ciudad 2', 'Dep 2', 456, 3, 'Provincia 2', 'Referencia 2', 1
 go
 -- Insertar Usuarios
 INSERT INTO Usuario (Activo, Apellidos, DNI, Email, FechaNacimiento, Nombres, Password, Telefono, IdTipoUsuario, IdDomicilio)
-VALUES (1, 'Apellido1', '123456789', 'usuario1@email.com', '1990-01-01', 'Nombre1', 'password1', '123456789', 1, 1);
+VALUES (1, 'Admin', '123456789', 'admin@admin.com', '1990-01-01', 'Admin', 'admin', '123456789', 1, 1);
 
 INSERT INTO Usuario (Activo, Apellidos, DNI, Email, FechaNacimiento, Nombres, Password, Telefono, IdTipoUsuario, IdDomicilio)
-VALUES (1, 'Apellido2', '987654321', 'usuario2@email.com', '1995-02-15', 'Nombre2', 'password2', '987654321', 2, 2);
+VALUES (1, 'Comun', '987654321', 'user@user.com', '1995-02-15', 'User', 'user', '987654321', 2, 2);
 
 go
 -- Insertar Marcas

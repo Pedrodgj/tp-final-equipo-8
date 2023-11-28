@@ -60,7 +60,8 @@
                 Abrir Modal
             </button>
         </td>
-        <td class="whitespace-nowrap px-4 py-2 text-slate-500"><%= string.Format(pesos, "{0:C}", com.Total) %>
+        <%string total = string.Format(pesos, "{0:C}", com.Total); %>
+        <td class="whitespace-nowrap px-4 py-2 text-slate-500"><%: total %>
           <div class="modal hidden fixed top-0 left-0 w-full h-full bg-black bg-opacity-50 flex justify-center items-center myModal">
             <div class="bg-white p-8 rounded shadow-md">
                 <span class="block font-bold mb-4">Detalle Compra</span>

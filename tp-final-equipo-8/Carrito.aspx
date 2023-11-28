@@ -47,8 +47,9 @@
                 </div>
 
                 <div>
-                  <dt class="inline">Detalles:</dt>
-                  <dd class="inline">TEXTO</dd>
+                  <dt class="inline">Precio: </dt>
+                   <%string precio = string.Format(pesos, "{0:C}", art.Precio); %>
+                  <dd class="inline"><%: precio %></dd>
                 </div>
               </dl>
             </div>

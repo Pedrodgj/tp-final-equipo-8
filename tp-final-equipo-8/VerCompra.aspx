@@ -36,8 +36,8 @@
                                 %>
                         <tr>
                             <td class="whitespace-nowrap px-4 py-2 text-slate-500"><%: articulo.Nombre %></td>
-                            <td class="whitespace-wrap px-4 py-2 text-slate-500 min-w-[12rem] max-w-[20rem] text-center"><%: detalle.Cantidad %></td>
-                            <td class="whitespace-wrap px-4 py-2 text-slate-500 min-w-[12rem] max-w-[20rem] text-center"><%: detalle.PrecioUnitario %></td>
+                            <td class="whitespace-wrap px-4 py-2 text-slate-500 min-w-[12rem] max-w-[20rem] text-center"><%:  detalle.Cantidad %></td>
+                            <td class="whitespace-wrap px-4 py-2 text-slate-500 min-w-[12rem] max-w-[20rem] text-center"><%: string.Format(pesos, "{0:C}", detalle.PrecioUnitario) %></td>
                       </tr>
                         <%} %>
                     </tbody>
