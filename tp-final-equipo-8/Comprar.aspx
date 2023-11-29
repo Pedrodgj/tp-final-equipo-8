@@ -110,13 +110,6 @@
                     </span>
                 </label>
                     
-               <%--  <label for="PasswordConfirmation" class="bg-slate-800 relative block overflow-hidden rounded-md border border-slate-900 px-3 pt-3 shadow-sm focus-within:border-slate-600 focus-within:ring-1 focus-within:ring-slate-600">
-                      <input type="password" id="PasswordConfirmation" placeholder="Password Confirmation" class="peer h-8 w-full border-none bg-transparent p-0 placeholder-transparent focus:border-transparent focus:outline-none focus:ring-0 sm:text-sm"/>
-
-                      <span class="absolute start-3 top-3 -translate-y-1/2 text-xs text-slate-400 transition-all peer-placeholder-shown:top-1/2 peer-placeholder-shown:text-sm peer-focus:top-3 peer-focus:text-xs">
-                          Confirmar contraseña
-                      </span>
-                  </label>--%>
                 </div>
              
                 <div class="col-span-6 sm:flex sm:items-end sm:gap-4 space-y-2 pt-2 float-right">
