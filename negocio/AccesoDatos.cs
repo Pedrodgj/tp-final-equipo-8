@@ -42,10 +42,39 @@ namespace Negocio
             }
         }
 
+        public void setearConsulta(string consulta)
+        {
+            cmd.CommandType = System.Data.CommandType.Text;
+            cmd.CommandText = consulta;
+        }
+
+        public void setearParametro(string nombre, object valor)
+        {
+            cmd.Parameters.AddWithValue(nombre, valor);
+        }
+
         public SqlDataReader Leer(string consulta) 
         {
             Preparar(consulta);
             return cmd.ExecuteReader();
+        }
+
+        public void ejecutarAccion()
+        {
+            cmd.Connection = conn;
+            try
+            {
+                conn.Open();
+                cmd.ExecuteNonQuery();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                conn.Close();
+            }
         }
 
         public int Ejecutar(string consulta)

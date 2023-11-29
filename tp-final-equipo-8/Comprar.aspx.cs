@@ -214,15 +214,16 @@ namespace tp_carrito_compras_equipo_20
                 detalle.PrecioUnitario = art.Precio;
                 decimal ivaTotal = (art.Precio * art.Cantidad) * ivaPorcentaje;
                 decimal total = ivaTotal + (art.Precio * art.Cantidad);
-                //decimal totalRedondeado = Math.Round(total, 2) / 100;
-                detalle.Total = total;
+                decimal totalRedondeado = Math.Round(total, 2);
+                detalle.Total = totalRedondeado;
                 detalleCompras.Add(detalle);
             }
             compra.IdUsuario = IdUsuario;
             compra.Detalles = detalleCompras;
             compra.Estado = nuevo.ToString();
             compra.Envio = acordarEnvio.Checked;
-            compra.Total = totalAPagar;
+            decimal totalFinalRedondeado = Math.Round(totalAPagar, 2);
+            compra.Total = totalFinalRedondeado;
             Compras.GrabarCompra(compra);
 
             Response.Redirect("PedidoFinalizado.aspx");

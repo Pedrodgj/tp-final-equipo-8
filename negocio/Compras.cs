@@ -37,20 +37,70 @@ namespace Negocio
 
 
 
-        public static bool GrabarCompra(Compra compras)
+        public static void GrabarCompra(Compra compras)
         {
             AccesoDatos acceso = new AccesoDatos();
 
-            List<string> query = new List<string> {
-                string.Format("INSERT INTO Compras (IdUsuario, CodigoSeguimiento, Estado, Envio, Total) VALUES ('{0}', '{1}', '{2}' ,'{3}', '{4}')", compras.IdUsuario, ' ', compras.Estado, compras.Envio, compras.Total)
-            };
+            //List<string> query = new List<string> {
+            //    string.Format("INSERT INTO Compras (IdUsuario, CodigoSeguimiento, Estado, Envio, Total) VALUES ('{0}', '{1}', '{2}' ,'{3}', '{4}')", compras.IdUsuario, ' ', compras.Estado, compras.Envio, compras.Total)
+            //};
 
-            foreach (var detalle in compras.Detalles)
-            { 
-                query.Add(string.Format("INSERT INTO DetalleCompra (IdCompra, IdArticulo, Cantidad, PrecioUnitario, Total) VALUES ((SELECT MAX(Id) FROM Compras), '{0}', '{1}', '{2}', '{3}')", detalle.IdArticulo, detalle.Cantidad, detalle.PrecioUnitario, detalle.Total));
+            //foreach (var detalle in compras.Detalles)
+            //{ 
+            //    query.Add(string.Format("INSERT INTO DetalleCompra (IdCompra, IdArticulo, Cantidad, PrecioUnitario, Total) VALUES ((SELECT MAX(Id) FROM Compras), '{0}', '{1}', '{2}', '{3}')", detalle.IdArticulo, detalle.Cantidad, detalle.PrecioUnitario, detalle.Total));
+            //}
+
+            //return acceso.Ejecutar(query) > 0;
+
+            try
+            {
+                acceso.setearConsulta("INSERT INTO Compras (IdUsuario, CodigoSeguimiento, Estado, Envio, Total) " +
+                               "VALUES (@IdUsuario, ' ', @Estado, @Envio, @Total)");
+                acceso.setearParametro("@IdUsuario", compras.IdUsuario);
+                acceso.setearParametro("@Estado", compras.Estado);
+                acceso.setearParametro("@Envio", compras.Envio);
+                acceso.setearParametro("@Total", compras.Total);
+                acceso.ejecutarAccion();
+
+                foreach (var deta in compras.Detalles)
+                {
+                    GrabarDetalleCompra(deta);
+                }
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+            finally
+            {
+                acceso.Close();
             }
 
-            return acceso.Ejecutar(query) > 0;
+        }
+
+        private static void GrabarDetalleCompra(DetalleCompra detalle)
+        {
+            AccesoDatos acceso = new AccesoDatos();
+            try
+            {
+                acceso.setearConsulta("INSERT INTO DetalleCompra (IdCompra, IdArticulo, Cantidad, PrecioUnitario, Total) " +
+                                "VALUES ((SELECT MAX(Id) FROM Compras), @IdArticulo, @Cantidad, @PrecioUnitario, @DetalleTotal)");
+                acceso.setearParametro("@IdArticulo", detalle.IdArticulo);
+                acceso.setearParametro("@Cantidad", detalle.Cantidad);
+                acceso.setearParametro("@PrecioUnitario", detalle.PrecioUnitario);
+                acceso.setearParametro("@DetalleTotal", detalle.Total);
+                acceso.ejecutarAccion();
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+            finally
+            {
+                acceso.Close();
+            }
         }
 
         public static List<Compra> ListarCompraPorUsuario(int IdUsuario)
