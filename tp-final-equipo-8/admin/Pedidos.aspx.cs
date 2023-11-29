@@ -36,6 +36,14 @@ namespace tp_carrito_compras_equipo_20.admin
             var id = Request.QueryString["id"];
             var delete = Request.QueryString["delete"];
 
+            if(delete == "true")
+            {
+                int idCompra = int.Parse(id);
+                cancelarPedido(idCompra);
+                Response.Redirect("Pedidos.aspx");
+                return;
+            }
+
             if (id != null)
             {
                 int idCompra = int.Parse(id);
@@ -44,13 +52,6 @@ namespace tp_carrito_compras_equipo_20.admin
                 return;
             } 
             
-            if(delete == "true")
-            {
-                int idCompra = int.Parse(id);
-                cancelarPedido(idCompra);
-                Response.Redirect("Pedidos.aspx");
-                return;
-            }
             List<Compra> sessionCompra = (List<Compra>)Session["comprasActual"];
             compras = sessionCompra;
             ddlOpcion.Visible = false;
@@ -205,6 +206,7 @@ namespace tp_carrito_compras_equipo_20.admin
             }
             
             Negocio.Compras.UpdateCompra(compra);
+            Session["comprasActual"] = null;
         }
 
         private void cancelarPedido(int IdCompra)
@@ -224,7 +226,6 @@ namespace tp_carrito_compras_equipo_20.admin
 
             try
             {
-                usuario.Email = "pedrodgj1497@gmail.com";
                 enviarEmail.ArmarCorreo(usuario.Email, "Compra Cancelada", html);
                 enviarEmail.enviarEmail();
                 Session["Msg_ok"] = "Se ha realizado correctamente el envio del correo";
