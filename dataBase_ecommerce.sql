@@ -71,7 +71,7 @@ create table Imagenes(
 	IdArticulo INT NOT NULL,
 	ImagenUrl TEXT NOT NULL
 	CONSTRAINT PK_Imagenes PRIMARY KEY (Id),
-	CONSTRAINT FK_Articulos FOREIGN KEY (Id) REFERENCES Articulos(Id)
+	CONSTRAINT FK_Articulos FOREIGN KEY (IdArticulo) REFERENCES Articulos(Id)
 )
 
 go
