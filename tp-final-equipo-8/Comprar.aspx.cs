@@ -213,7 +213,9 @@ namespace tp_carrito_compras_equipo_20
                 detalle.Cantidad = art.Cantidad;
                 detalle.PrecioUnitario = art.Precio;
                 decimal ivaTotal = (art.Precio * art.Cantidad) * ivaPorcentaje;
-                detalle.Total = ivaTotal + (art.Precio * art.Cantidad);
+                decimal total = ivaTotal + (art.Precio * art.Cantidad);
+                //decimal totalRedondeado = Math.Round(total, 2) / 100;
+                detalle.Total = total;
                 detalleCompras.Add(detalle);
             }
             compra.IdUsuario = IdUsuario;
@@ -251,17 +253,6 @@ namespace tp_carrito_compras_equipo_20
                 txtCodigoPostal.Enabled = false;
                 txtReferencia.Enabled = false;
                 btnGuardarDomicilio.Visible = false;
-                //Domicilio domicilio = new Domicilio();
-                //domicilio.Id = domicilio.Id;
-                //domicilio.Provincia = txtProvincia.Text;
-                //domicilio.Ciudad = txtCiudad.Text;
-                //domicilio.Calle = txtCalle.Text;
-                //domicilio.Numero =  int.Parse(txtNumero.Text);
-                //domicilio.Departamento = txtDepartamento.Text;
-                //domicilio.Piso = int.Parse(txtPiso.Text);
-                //domicilio.CodigoPostal = int.Parse(txtCodigoPostal.Text);    
-                //domicilio.Referencia = txtReferencia.Text;
-                //Negocio.Domicilios.Editar(domicilio);
 
             }
         }

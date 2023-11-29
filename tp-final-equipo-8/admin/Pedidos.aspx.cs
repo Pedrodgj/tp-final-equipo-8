@@ -21,7 +21,6 @@ namespace tp_carrito_compras_equipo_20.admin
         public EstadoPedidoEnum retirar = EstadoPedidoEnum.LISTO_PARA_RETIRAR;
         public EstadoPedidoEnum cancelado = EstadoPedidoEnum.CANCELADO;
         public EstadoPedidoEnum completado = EstadoPedidoEnum.COMPLETADO;
-        private string seleccionado;
         public Usuario usuario;
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -195,7 +194,7 @@ namespace tp_carrito_compras_equipo_20.admin
                     enviarEmail.ArmarCorreo(usuario.Email, asunto, html);
                     enviarEmail.enviarEmail();
                     Session["Msg_ok"] = "Se ha realizado correctamente el envio del correo";
-                    compras = null;
+                    Session["comprasActual"] = null;
                 }
                 catch (Exception ex)
                 {
@@ -231,7 +230,7 @@ namespace tp_carrito_compras_equipo_20.admin
                 Session["Msg_ok"] = "Se ha realizado correctamente el envio del correo";
                 compra.Estado = cancelado.ToString();
                 Negocio.Compras.UpdateCompra(compra);
-                compras = null;
+                Session["comprasActual"] = null;
             }
             catch (Exception ex)
             {

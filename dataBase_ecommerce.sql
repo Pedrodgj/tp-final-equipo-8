@@ -1,3 +1,9 @@
+--use master
+--ALTER DATABASE TP_ECOMMERCE SET SINGLE_USER WITH ROLLBACK IMMEDIATE;
+--drop database TP_ECOMMERCE
+
+
+
 create database TP_ECOMMERCE
 go
 use TP_ECOMMERCE
@@ -61,8 +67,8 @@ CREATE TABLE Marcas (
 	IdCategoria INT NULL,
 	Precio MONEY NULL,
  CONSTRAINT PK_Articulos PRIMARY KEY (Id),
- CONSTRAINT FK_Marcas FOREIGN KEY (Id) REFERENCES Marcas(Id),
- CONSTRAINT FK_Categorias FOREIGN KEY (Id) REFERENCES Categorias(Id)
+ CONSTRAINT FK_Marcas FOREIGN KEY (IdMarca) REFERENCES Marcas(Id),
+ CONSTRAINT FK_Categorias FOREIGN KEY (IdCategoria) REFERENCES Categorias(Id)
  )
  
  go
@@ -71,7 +77,7 @@ create table Imagenes(
 	IdArticulo INT NOT NULL,
 	ImagenUrl TEXT NOT NULL
 	CONSTRAINT PK_Imagenes PRIMARY KEY (Id),
-	CONSTRAINT FK_Articulos FOREIGN KEY (Id) REFERENCES Articulos(Id)
+	CONSTRAINT FK_Articulos FOREIGN KEY (IdArticulo) REFERENCES Articulos(Id)
 )
 
 go
@@ -102,3 +108,6 @@ ADD Total MONEY NOT NULL DEFAULT(0)
 
 ALTER TABLE Compras
 ADD Envio BIT NOT NULL DEFAULT(0)
+
+ALTER TABLE Articulos
+ALTER COLUMN Nombre VARCHAR(254) NULL 

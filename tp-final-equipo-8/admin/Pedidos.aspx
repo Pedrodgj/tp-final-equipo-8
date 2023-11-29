@@ -43,11 +43,6 @@
                 <asp:ListItem Text="CANCELADO"></asp:ListItem>
             </asp:DropDownList>
             <asp:Label runat="server" ID="lblBuscar" Visible="false" CssClass="whitespace-nowrap px-4 py-2 font-medium text-slate-400">Ingrese</asp:Label>
-           <%-- <asp:DropDownList ID="ddlOpcionesFecha" Visible="false" runat="server" CssClass="inline-flex justify-center gap-x-1.5 rounded-md bg-white px-3 py-2 pr-8 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50 w-auto">
-                <asp:ListItem Text="Hoy"></asp:ListItem>
-                <asp:ListItem Text="Ultima Semana"></asp:ListItem>
-                <asp:ListItem Text="Ultimo Mes"></asp:ListItem>
-            </asp:DropDownList>   --%>  
             <asp:Button ID="btnBuscar" runat="server" Text="Filtrar" OnClick="btnBuscar_Click" CssClass="bg-blue-900 hover:bg-blue-700 font-semibold py-2 px-4 rounded-full"/>
 
         </div>
@@ -98,8 +93,7 @@
                 Abrir Modal
             </button>
         </td>
-        <%string total = string.Format(pesos, "{0:C}", com.Total); %>
-        <td class="whitespace-nowrap px-4 py-2 text-slate-500"><%: total %>
+        <td class="whitespace-nowrap px-4 py-2 text-slate-500"><%: string.Format(pesos, "{0:C}", com.Total) %>
           <div class="modal hidden fixed top-0 left-0 w-full h-full bg-black bg-opacity-50 flex justify-center items-center myModal">
             <div class="bg-white p-8 rounded shadow-md">
                 <span class="block font-bold mb-4">Detalle Compra</span>
@@ -116,7 +110,7 @@
                             {%>
                             <% dominio.Articulo art = Negocio.Articulos.Ver(detalle.IdArticulo.ToString()); %>
                                 <tr>
-                                    <td class="whitespace-wrap px-4 py-2 text-slate-500 min-w-[12rem] max-w-[20rem] text-center"><%= art.Nombre %></td>
+                                    <td class="whitespace-normal px-4 py-2 text-slate-500 min-w-[12rem] max-w-[20rem] max-h-[4rem] overflow-y-auto"><%= art.Nombre %></td>
                                     <td class="whitespace-wrap px-4 py-2 text-slate-500 min-w-[12rem] max-w-[20rem] text-center"><%= detalle.Cantidad %></td>
                                     <td class="whitespace-wrap px-4 py-2 text-slate-500 min-w-[12rem] max-w-[20rem] text-center"><%= string.Format(pesos, "{0:C}", detalle.Total) %></td>
                                 </tr>
@@ -154,12 +148,7 @@
                         <% default:%> 
                         <asp:Label runat="server" CssClass="bg-amber-600 block w-11/12 rounded-md border border-slate-900 px-4 py-2 text-xs font-medium text-white shadow-sm focus-within:border-amber-700 focus-within:ring-1 focus-within:ring-amber-700">" "</asp:Label>
                         <%break;
-                        } %>
-            <%--<asp:DropDownList runat="server" CssClass="bg-amber-600 block w-9/12 rounded-md border border-slate-900 px-4 py-2 text-xs font-medium text-white shadow-sm focus-within:border-amber-700 focus-within:ring-1 focus-within:ring-amber-700">
-            <asp:ListItem id="ddlAceptado" Text="Aceptado" Value= "ACEPTADO"></asp:ListItem>
-            <asp:ListItem id="ddlEnProgreso" Text= "En progreso" Value= "EN_PROGRESO"></asp:ListItem>
-            <asp:ListItem id="ddlCompletado" Text= "Completado" Value= "COMPLETADO"></asp:ListItem>
-            </asp:DropDownList>  --%>         
+                        } %>         
         </td>
         <td class="whitespace-nowrap px-4 py-2">
           
