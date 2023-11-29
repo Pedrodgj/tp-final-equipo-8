@@ -29,13 +29,12 @@ namespace tp_carrito_compras_equipo_20.admin
             ddlMarca.DataValueField = "Id";
             ddlMarca.DataBind();
 
-            if (this.IsPostBack)
+            codigo = Request.QueryString["id"];
+            id = int.Parse(codigo ?? "0");
+
+            if (id > 0)
             {
                 btnAgregar.Text = "Editar";
-
-                codigo = Request.QueryString["id"];
-                id = int.Parse(codigo ?? "0");
-
 
                 Articulo articulo = Articulos.Ver(codigo);
                 tbCodigo.Text = articulo.Codigo;
@@ -43,29 +42,46 @@ namespace tp_carrito_compras_equipo_20.admin
                 tbNombre.Text = articulo.Nombre;
                 tbPrecio.Text = Convert.ToString(articulo.Precio);
 
-                if (id > 0)
-                {
-                    if (!Negocio.Articulos.Editar(articulo))
-                    {
-                        Session["Msg_error"] = "No se ha podido actualizar el producto " + id;
-                        return;
-                    }
-                    Session["Msg_ok"] = "Producto actualizado con exito!";
-                }
-                else
-                {
-                    if (!Negocio.Articulos.Grabar(articulo))
-                    {
-                        Session["Msg_error"] = "No se ha podido grabar el producto " + id;
-                        return;
-                    }
-                    Session["Msg_ok"] = "Producto creado con exito!";
-                    btnAgregar.Text = "Agregar";
-                }
-                Response.Redirect("/admin/Productos.aspx");
 
-            
+                if (this.IsPostBack)
+                {
+                    articulo.Codigo= tbCodigo.Text;
+                    articulo.Nombre = tbNombre.Text;
+                    articulo.Descripcion = tbDescripcion.Text;
+                    articulo.IdCategoria = int.Parse(ddlCategoria.SelectedValue);
+                    articulo.IdMarca = int.Parse(ddlMarca.SelectedValue);
+                    //articulo.Precio = decimal.Parse(tbPrecio.Text.Replace(",", "."));
 
+                    //foreach (HttpPostedFile img in Request.Files)
+                    //{
+                    //    articulo.Imagenes.Add(new Imagen
+                    //    {
+                    //        IdArticulo = articulo.Id,
+                    //        Url = "../imagenes/" + img.FileName
+                    //    });
+                    //}
+
+                    if (id > 0)
+                    {
+                        if (!Negocio.Articulos.Editar(articulo))
+                        {
+                            Session["Msg_error"] = "No se ha podido actualizar el producto " + id;
+                            return;
+                        }
+                        Session["Msg_ok"] = "Producto actualizado con exito!";
+                    }
+                    else
+                    {
+                        if (!Negocio.Articulos.Grabar(articulo))
+                        {
+                            Session["Msg_error"] = "No se ha podido grabar el producto " + id;
+                            return;
+                        }
+                        Session["Msg_ok"] = "Producto creado con exito!";
+                        btnAgregar.Text = "Agregar";
+                    }
+                    Response.Redirect("/admin/Productos.aspx");
+                }
             }
             else
             {

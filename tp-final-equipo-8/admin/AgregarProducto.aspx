@@ -65,12 +65,10 @@
         <asp:TextBox runat="server" id="tbPrecio" type="number" class="bg-slate-800 block w-full rounded-md border border-slate-900 px-3 py-2 shadow-sm focus-within:border-slate-600 focus-within:ring-1 focus-within:ring-slate-600" placeholder="Precio"></asp:TextBox>
         </div>
 
-
-
-        <div class="col-span-2">
-        <label for="multiple_files" class="block mb-2 text-sm font-medium text-slate-400">Imagenes</label>
-        <input class="bg-slate-800 block w-full rounded-md border border-slate-900 px-3 py-2 shadow-sm focus-within:border-slate-600 focus-within:ring-1 focus-within:ring-slate-600" id="multiple_files" type="file" multiple>
-        </div>
+        <%--<div class="col-span-2">
+            <label for="multiple_files" class="block mb-2 text-sm font-medium text-slate-400">Imagenes</label>
+            <input class="bg-slate-800 block w-full rounded-md border border-slate-900 px-3 py-2 shadow-sm focus-within:border-slate-600 focus-within:ring-1 focus-within:ring-slate-600" id="multiple_files" type="file" multiple>
+        </div>--%>
     </div>
 
     <asp:Button runat="server" id="btnAgregar" onclick="btnAgregar_Click" cssclass="inline-block shrink-0 rounded-md border border-emerald-700 bg-emerald-800 px-12 py-3 mt-5 text-sm font-medium text-white transition hover:bg-slate-800 hover:text-slate-400 focus:outline-none focus:ring active:text-slate-500"></asp:Button>

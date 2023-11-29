@@ -59,7 +59,9 @@
             Ver
           </a>
             <% linkId = Convert.ToString(art.Id); %>
-            <asp:LinkButton runat="server" Id="lnkButton" Text="Editar" onclick="lnkButton_Click" CommandArgument='<%# Eval(linkId) %>' class="inline-block rounded bg-emerald-800 px-4 py-2 text-xs font-medium text-white hover:bg-emerald-900"/>
+            <a href="/admin/AgregarProducto.aspx?id=<%= art.Id %>" class="inline-block rounded bg-emerald-800 px-4 py-2 text-xs font-medium text-white hover:bg-emerald-900">
+                    Editar
+            </a>
             <a href="/admin/Productos.aspx?id=<%= art.Id %>" class="inline-block rounded bg-red-900 px-4 py-2 text-xs font-medium text-white hover:bg-red-950" onclick="return confirm('¿Eliminar producto <%= art.Nombre %>?')">
                     Eliminar
             </a>
