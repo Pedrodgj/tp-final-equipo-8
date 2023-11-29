@@ -13,10 +13,8 @@ namespace Negocio
 
         public AccesoDatos()
         {
-<<<<<<< HEA=======
-            conn = new SqlConnection("Server=.\\SQLExpress;Database=TP_ECOMMERCE;Trusted_Connection=True;");
+            conn = new SqlConnection("Server=.\\SQLExpress;Da<tabase=TP_ECOMMERCE;Trusted_Connection=True;");
             //conn = new SqlConnection("Server=.;Database=TP_ECOMMERCE;Trusted_Connection=True;");
->>>>>>> 4070a1562b64275e3a829609ff5e4eb091764859
 
             cmd = new SqlCommand();
             cmd.CommandType = System.Data.CommandType.Text;   

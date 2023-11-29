@@ -51,14 +51,17 @@ namespace tp_carrito_compras_equipo_20.admin
                 cancelarPedido(idCompra);
                 Response.Redirect("Pedidos.aspx");
                 return;
-            }          
-
-            compras = ListarCompras();
+            }
+            List<Compra> sessionCompra = (List<Compra>)Session["comprasActual"];
+            compras = sessionCompra;
             ddlOpcion.Visible = false;
-            ddlFiltro.Items.Add("");
-            ddlFiltro.Items.Add("Usuario");
-            ddlFiltro.Items.Add("Fecha");
-
+            txtBuscar.Visible = false;
+            lblBuscar.Visible = false;
+            if(compras == null)
+            {
+                compras = ListarCompras();
+                Session["comprasActual"] = compras;
+            }             
         }
 
         private List<Compra> ListarCompras()
@@ -66,6 +69,21 @@ namespace tp_carrito_compras_equipo_20.admin
             List<Compra> comprasUsuario = new List<Compra>();
             List<Compra> compras;
             compras = Compras.ListarCompras();
+
+            foreach (Compra compra in compras)
+            {
+                compra.Detalles = ListarDetalles(compra.Id);
+                comprasUsuario.Add(compra);
+            }
+
+            return compras;
+        }
+
+        private List<Compra> ListarComprasPorFechas(string query)
+        {
+            List<Compra> comprasUsuario = new List<Compra>();
+            List<Compra> compras;
+            compras = Compras.ListarCompraPorFechas(query);
 
             foreach (Compra compra in compras)
             {
@@ -177,6 +195,7 @@ namespace tp_carrito_compras_equipo_20.admin
                     enviarEmail.ArmarCorreo(usuario.Email, asunto, html);
                     enviarEmail.enviarEmail();
                     Session["Msg_ok"] = "Se ha realizado correctamente el envio del correo";
+                    compras = null;
                 }
                 catch (Exception ex)
                 {
@@ -212,6 +231,7 @@ namespace tp_carrito_compras_equipo_20.admin
                 Session["Msg_ok"] = "Se ha realizado correctamente el envio del correo";
                 compra.Estado = cancelado.ToString();
                 Negocio.Compras.UpdateCompra(compra);
+                compras = null;
             }
             catch (Exception ex)
             {
@@ -252,7 +272,96 @@ namespace tp_carrito_compras_equipo_20.admin
 
             string generatedId = idBuilder.ToString();
             return generatedId;
-        }       
+        }
+
+        protected void ddlFiltro_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (ddlFiltro.SelectedItem.Text.ToString() == "Usuario")
+            {
+                ddlOpcion.Items.Clear();
+                ddlOpcion.Items.Add("Nombre");
+                ddlOpcion.Items.Add("Email");
+                ddlOpcion.Visible = true;
+
+                txtBuscar.Visible = true;
+                lblBuscar.Visible = true;
+            }
+
+            if(ddlFiltro.SelectedItem.Text.ToString() == "Fecha")
+            {
+                txtBuscar.Visible = false;
+                lblBuscar.Visible = false;
+                ddlOpcion.Items.Clear();
+                ddlOpcion.Items.Add("Hoy");
+                ddlOpcion.Items.Add("Ultima Semana");
+                ddlOpcion.Items.Add("Ultimo Mes");
+                ddlOpcion.Visible = true;
+            }
+        }
+
+        protected void btnBuscar_Click(object sender, EventArgs e)
+        {
+            List<Compra> sessionCompra = ListarCompras();
+            Usuario usuario = null;
+            if (ddlFiltro.SelectedItem.Text.ToString() == "Usuario")
+            {
+                if (ddlOpcion.SelectedItem.Text.ToString() == "Nombre")
+                {
+                    string query = $"WHERE us.Nombres LIKE('%{txtBuscar.Text}%')";
+                    usuario = Usuarios.LeerPorFiltro(query);
+                }
+                if (ddlOpcion.SelectedItem.Text.ToString() == "Email")
+                {
+                    string query = $"WHERE us.Email LIKE('%{txtBuscar.Text}%')";
+                    usuario = Usuarios.LeerPorFiltro(query);
+                }
+                if (usuario == null)
+                {
+                    Session["Msg_error"] = "No se hallaron resultados para tu busqueda";
+                    Response.Redirect("Pedidos.aspx");
+                }
+                Session["comprasActual"] = sessionCompra.FindAll(x => x.IdUsuario == usuario.Id);
+                if (ddlEstado.SelectedItem.Text.ToString() != "TODOS")
+                {
+                    Session["comprasActual"] = sessionCompra.FindAll(x => x.Estado == ddlEstado.Text.ToString());
+                }
+                Response.Redirect("Pedidos.aspx");
+            }
+            if (ddlFiltro.SelectedItem.Text.ToString() == "Fecha")
+            {
+                string query;
+                if (ddlOpcion.SelectedItem.Text.ToString() == "Hoy")
+                {
+                    query = $"CONVERT(DATE, FechaCompra) = CONVERT(DATE, GETDATE())";
+                    Session["comprasActual"] = ListarComprasPorFechas(query);
+                }
+                if (ddlOpcion.SelectedItem.Text.ToString() == "Ultima Semana")
+                {
+                    query = $"FechaCompra >= DATEADD(DAY, -7, CONVERT(DATE, GETDATE())) AND FechaCompra <= GETDATE()";
+                    Session["comprasActual"] = ListarComprasPorFechas(query);
+                }
+                if (ddlOpcion.SelectedItem.Text.ToString() == "Ultimo Mes")
+                {
+                    query = $"FechaCompra >= DATEADD(MONTH, -1, DATEADD(DAY, 1, EOMONTH(GETDATE(), -1))) AND FechaCompra <= EOMONTH(GETDATE())";
+                    Session["comprasActual"] = ListarComprasPorFechas(query);
+                }
+                if(ddlEstado.SelectedItem.Text.ToString() != "TODOS")
+                {
+                    sessionCompra = (List<Compra>)Session["comprasActual"];
+                    Session["comprasActual"] = sessionCompra.FindAll(x => x.Estado == ddlEstado.Text.ToString());
+                }
+                Response.Redirect("Pedidos.aspx");
+            }
+
+            if(ddlEstado.SelectedItem.Text.ToString() != "TODOS")
+            {
+                Session["comprasActual"] = sessionCompra.FindAll(x => x.Estado == ddlEstado.Text.ToString());
+                Response.Redirect("Pedidos.aspx");
+            }
+
+            Session["comprasActual"] = sessionCompra;
+            Response.Redirect("Pedidos.aspx");
+        }
     }
     
 }

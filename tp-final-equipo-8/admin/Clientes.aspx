@@ -21,7 +21,10 @@
         </th>
         <th class="whitespace-nowrap px-4 py-2 font-medium text-slate-400">
           Estado
-        </th>       
+        </th> 
+         <th class="whitespace-nowrap px-4 py-2 font-medium text-slate-400">
+          Tipo Usuario
+        </th> 
 
         <th class="px-4 py-2"></th>
       </tr>
@@ -35,15 +38,17 @@
         <td class="whitespace-nowrap px-4 py-2 font-medium text-slate-500">
           <%= cliente.Id %>
         </td>
-        <td class="whitespace-nowrap px-4 py-2 text-slate-500"><%= nombre %></td>
-        <td class="whitespace-nowrap px-4 py-2 text-slate-500"><%= cliente.Email %></td>
-        <td class="whitespace-nowrap px-4 py-2 text-slate-500"><%= cliente.Telefono %></td>
-        <td class="whitespace-nowrap px-4 py-2 text-slate-500"><%: Convert.ToBoolean(cliente.Activo) ? "Activo" : "Inactivo" %></td>
+        <td class="whitespace-nowrap px-4 py-2 font-medium text-slate-400"><%= nombre %></td>
+        <td class="whitespace-nowrap px-4 py-2 font-medium text-slate-400"><%= cliente.Email %></td>
+        <td class="whitespace-nowrap px-4 py-2 font-medium text-slate-400"><%= cliente.Telefono %></td>
+        <td class="whitespace-nowrap px-4 py-2 font-medium text-slate-400"><%: Convert.ToBoolean(cliente.Activo) ? "Activo" : "Inactivo" %></td>
+        <td class="whitespace-nowrap px-4 py-2 font-medium text-slate-400"><%: cliente.IdTipoUsuario == 1 ? "Administrador" : "Cliente" %></td>
           
         </tr>
 
     <% } %>
                     </tbody>
                 </table>
+        </div>
 
 </asp:Content>

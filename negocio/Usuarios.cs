@@ -13,15 +13,16 @@ namespace Negocio
             AccesoDatos acceso = new AccesoDatos();
             List<Usuario> articulos = new List<Usuario>();
 
-            var lector = acceso.Leer("SELECT * FROM Usuarios ORDER BY Id");
+            var lector = acceso.Leer("SELECT * FROM Usuario ORDER BY Id");
 
             while (lector.Read())
             {
                 Usuario aux = new Usuario
                 {
                     Id = (int)lector["Id"],
+                    Activo = (bool)lector["Activo"],
                     Apellidos = (string)lector["Apellidos"],
-                    Nombres = (string)lector["Nombre"],
+                    Nombres = (string)lector["Nombres"],
                     DNI = (string)lector["DNI"],
                     Email = (string)lector["Email"],
                     FechaNacimiento = (DateTime)lector["FechaNacimiento"],
@@ -84,6 +85,24 @@ namespace Negocio
                 IdDomicilio = (int)lector["IdDomicilio"],
             };
 
+            return usr;
+        }
+
+        public static Usuario LeerPorFiltro(string query)
+        {
+            AccesoDatos acceso = new AccesoDatos();
+
+            var lector = acceso.Leer($"SELECT us.Nombres, us.Apellidos, us.Email, us.Id, com.Id as IdCompra FROM Usuario AS us INNER JOIN Compras AS com ON us.Id = com.IdUsuario {query}");
+
+            if (!lector.Read()) return null;
+
+            Usuario usr = new Usuario
+            {
+                Id = (int)lector["Id"],
+                Apellidos = (string)lector["Apellidos"],
+                Nombres = (string)lector["Nombres"],
+                Email = (string)lector["Email"],
+            };
             return usr;
         }
 

@@ -169,5 +169,32 @@ namespace Negocio
        
             return acceso.Ejecutar(query) > 0;
         }
+
+        public static List<Compra> ListarCompraPorFechas(string query)
+        {
+            AccesoDatos acceso = new AccesoDatos();
+
+            List<Compra> compras = new List<Compra>();
+
+            var lector = acceso.Leer($"SELECT * FROM Compras WHERE {query}");
+
+            while (lector.Read())
+            {
+                Compra aux = new Compra
+                {
+                    Id = (int)lector["Id"],
+                    IdUsuario = (int)lector["IdUsuario"],
+                    FechaCompra = (DateTime)lector["FechaCompra"],
+                    Estado = (string)lector["Estado"],
+                    CodigoSeguimiento = (string)lector["CodigoSeguimiento"],
+                    Envio = (bool)lector["Envio"],
+                    Total = (decimal)lector["Total"]
+                };
+
+                compras.Add(aux);
+            }
+
+            return compras;
+        }
     }    
 }

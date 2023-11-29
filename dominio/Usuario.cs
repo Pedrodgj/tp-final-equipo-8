@@ -6,7 +6,7 @@ namespace dominio
     public class Usuario
     {
         public int Id { get; set; }
-        public string Activo { get; set; }
+        public bool Activo { get; set; }
         public string Apellidos { get; set; }
         public string Nombres { get; set; }
         public string DNI { get; set; }
