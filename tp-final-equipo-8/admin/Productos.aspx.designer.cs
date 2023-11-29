@@ -13,14 +13,5 @@ namespace tp_carrito_compras_equipo_20.admin
 
     public partial class Productos
     {
-
-        /// <summary>
-        /// lnkButton control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton lnkButton;
     }
 }
